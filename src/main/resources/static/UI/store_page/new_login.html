@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/login_style.css">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.315/build/spline-viewer.js"></script>
+    <script src="bootstrap3/jquery-1.9.1.min.js"></script>
+
+</head>
+<body>
+    <div class="content">
+        <div class="login-wrapper">
+            <div class="left-img">
+                <spline-viewer loading-anim url="https://prod.spline.design/sx8PxvBSwZZ57PdC/scene.splinecode" events-target="global" ba></spline-viewer>
+<!--                <div class="glass">-->
+<!--                    <div class="tips">-->
+<!--                        <div class="title">-->
+<!--                            THE SPACE NETWORK-->
+<!--                        </div>-->
+<!--                        <h1>Explore The Universe</h1>-->
+<!--                        <span>5 Million+ people have joined our network.</span>-->
+<!--                        <span>we invite you to join the tribe</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+            <div class="right-login-form">
+                <div class="form-wrapper">
+                    <h1>Log in</h1>
+                    <form id="form-login"  role="form">
+                        <div class="input-items">
+                        <span class="input-tips">
+                            Email Address
+                        </span>
+                            <input type="text" id="username" name="username" class="inputs" placeholder="Enter your email">
+                        </div>
+                        <div class="input-items">
+                        <span class="input-tips">
+                            Password
+                        </span>
+                            <input type="password" id="password" name="password" class="inputs" placeholder="Enter password">
+                            <span class="forgot">Forgot Password</span>
+                        </div>
+                        <input class="btn" type="button" id="btn-login" value="登录">
+
+                    </form>
+
+                    <div class="siginup-tips">
+                        <span>Don't Have An Account?</span>
+                        <span>Signup</span>
+                    </div>
+                    <div class="other-login">
+                        <div class="divider">
+                            <span class="line"></span>
+                            <span class="divider-text">or</span>
+                            <span class="line"></span>
+                        </div>
+                        <div class="other-login-wrapper">
+                            <div class="other-login-item">
+                                <img src="./asset/QQ.png" alt="QQ">
+                            </div>
+                            <div class="other-login-item">
+                                <img src="./asset/WeChat.png" alt="WeChat">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    $("#btn-login").click(function() {
+        $.ajax({
+            url: "/users/login",
+            type: "POST",
+            data: $("#form-login").serialize(),
+            dataType: "json",
+            success: function(json) {
+                if (json.state == 200) {
+                    alert("登录成功！");
+                    console.log(json.data);
+
+
+                    // console.log("cookie中的avatar=" + $.cookie("avatar"));
+                    location.href = "index.html";
+                } else {
+                    alert("登录失败！" + json.message);
+                }
+            },error:function (xhs){
+                alert("未知异常"+xhs.message);
+            }
+        });
+    });
+</script>
+</html>

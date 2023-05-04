@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <link rel="stylesheet" href="../lib/layui-v2.6.3/css/layui.css" media="all">
+    <script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-getUrlParam.js"></script>
+<!--    <script src="bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>-->
+</head>
+
+    <style>
+        h1{
+            text-align: center;
+        }
+        .logo{
+            font-size: 1.5em;
+        }
+
+        body{
+            background: #f5f5f5;
+        }
+        a{
+            text-decoration: none;
+            color: #0C0C0C;
+        }
+        a:hover{
+            text-decoration: none;
+            color: #0C0C0C;
+        }
+
+        .item {
+            padding: 20px;
+            border-radius: 30px;
+            /*background: #ffffff;*/
+            height: 100%;
+            overflow: auto;
+        }
+        .item .img{
+            border-radius: 30px;
+            overflow: hidden;
+        }
+        .item img{
+            width: 100%;
+            height:100%;
+        }
+
+        i{
+            float: right;
+        }
+
+        .product-info {
+            padding: 15px;
+            height:150px;
+
+        }
+
+        .product-title {
+            font-size: 20px;
+        }
+        .product-sell-point {
+            color: #7a7a7a;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow: ellipsis;
+        }
+        .product-price {
+            font-size: 20px;
+        }
+    </style>
+
+<body>
+<div class="layui-row">
+    <div class="layui-col-md12" style="height: 60px">
+        <ul class="layui-nav layui-bg-green" style="margin: 0px">
+            <li class="layui-nav-item"><a style="text-decoration: none;" class="logo" href="">个性化家居</a></li>
+            <li class="layui-nav-item"><a style="text-decoration: none;" href="">首页</a></li>
+            <li class="layui-nav-item"><a style="text-decoration: none;" href="product_list.html">所有家居</a></li>
+            <li class="layui-nav-item"><a style="text-decoration: none;" href="hot.html">灵感分享</a></li>
+            <li class="layui-nav-item"><a style="text-decoration: none;" href="">家居定制</a></li>
+            <li class="layui-nav-item"><a style="text-decoration: none;" href="../index.html">个人中心</a></li>
+            <li class="layui-nav-item share"><a style="text-decoration: none;" href=""> <i class="layui-icon layui-icon-login-wechat"style="font-size: 30px;"></i></a></li>
+            <li class="layui-nav-item share"><a style="text-decoration: none;" href=""> <i class="layui-icon layui-icon-login-qq"style="font-size: 30px;"></i></a></li>
+            <li class="layui-nav-item share"><a style="text-decoration: none;" href=""> <i class="layui-icon layui-icon-login-weibo"style="font-size: 30px;"></i></a></li>
+
+        </ul>
+    </div>
+</div>
+<br>
+<h1>所有家居</h1>
+<form class="layui-form" id="filter">
+    <div class="layui-form-item">
+        <label class="layui-form-label">筛选</label>
+        <div class="layui-input-inline">
+            <select id="kind1" lay-filter="kind1" name="kind1">
+                <option value="">请选择省</option>
+                <option value="浙江">浙江省</option>
+                <option value="你的工号">江西省</option>
+                <option value="你最喜欢的老师">福建省</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <select id="kind2" lay-filter="kind2" name="kind2">
+                <option value="">请选择市</option>
+                <option value="杭州">杭州</option>
+                <option value="宁波">宁波</option>
+                <option value="温州">温州</option>
+                <option value="温州">台州</option>
+                <option value="温州">绍兴</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <select id="priceSort" lay-filter="priceSort" name="priceSort">
+                <option value="">价格排序</option>
+                <option value="1">低价优先</option>
+                <option value="2">高价优先</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <select id="color" lay-filter="color" name="color">
+                <option value="">颜色</option>
+                <option value="白色">白色</option>
+                <option value="蓝色">蓝色</option>
+                <option value="黄色">黄色</option>
+                <option value="灰色">灰色</option>
+                <option value="黑色">黑色</option>
+                <option value="多色">多色</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <select id="material" lay-filter="material" name="material">
+                <option value="">材质</option>
+                <option value="木材">木材</option>
+                <option value="金属">金属</option>
+                <option value="玻璃">玻璃</option>
+                <option value="塑料">塑料</option>
+                <option value="布料">布料</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">宽度</label>
+            <div class="layui-input-inline" style="width: 100px;">
+                <input type="text" name="minWidth" placeholder="cm" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline" style="width: 100px;">
+                <input type="text" name="maxWidth" placeholder="cm" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">深度</label>
+            <div class="layui-input-inline" style="width: 100px;">
+                <input type="text" name="minDepth" placeholder="cm" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline" style="width: 100px;">
+                <input type="text" name="maxDepth" placeholder="cm" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">高度</label>
+            <div class="layui-input-inline" style="width: 100px;">
+                <input type="text" name="minHeight" placeholder="cm" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline" style="width: 100px;">
+                <input type="text" name="maxHeight" placeholder="cm" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+
+        </div>
+        <div class="layui-input-block">
+<!--            <button id="btn-add-product" class="layui-btn" lay-submit lay-filter="filter_product">筛选</button>-->
+            <button type="button" lay-filter="filter_product" lay-submit class="layui-btn layui-btn-lg">筛选</button>
+        </div>
+    </div>
+</form>
+<div class="box" id="box">
+    <div class="layui-container">
+        <div class="item layui-col-md3">
+            <a href="">
+                <div class="img"><img src="images/portal/00GuangBo1040A5GBR0731/collect.png" alt="" /></div>
+                <div class="product-info">
+                    <div class="layui-col-md6 layui-col-md-offset1">
+                        <div class="product-title">客厅</div>
+                        <div class="product-sell-point">大大大大大大大大大大大大大大大大</div>
+                    </div>
+                    <div class="layui-col-md4 layui-col-md-offset1">
+                        <div class="product-price">￥9999元</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="item layui-col-md3">
+            <a href="">
+                <div class="img"><img src="images/portal/00GuangBo1040A5GBR0731/collect.png" alt="" /></div>
+                <div class="product-info">
+                    <div class="layui-col-md6 layui-col-md-offset1">
+                        <div class="product-title">客厅</div>
+                        <div class="product-sell-point">大大大大大大大大大大大大大大大大</div>
+                    </div>
+                    <div class="layui-col-md4 layui-col-md-offset1">
+                        <div class="product-price">￥9999元</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="item layui-col-md3">
+            <a href="">
+                <div class="img"><img src="images/portal/00GuangBo1040A5GBR0731/collect.png" alt="" /></div>
+                <div class="product-info">
+                    <div class="layui-col-md6 layui-col-md-offset1">
+                        <div class="product-title">客厅</div>
+                        <div class="product-sell-point">大大大大大大大大大大大大大大大大</div>
+                    </div>
+                    <div class="layui-col-md4 layui-col-md-offset1">
+                        <div class="product-price">￥9999元</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="item layui-col-md3">
+            <a href="">
+                <div class="img"><img src="images/portal/00GuangBo1040A5GBR0731/collect.png" alt="" /></div>
+                <div class="product-info">
+                    <div class="layui-col-md6 layui-col-md-offset1">
+                        <div class="product-title">客厅</div>
+                        <div class="product-sell-point">大大大大大大大大大大大大大大大大</div>
+                    </div>
+                    <div class="layui-col-md4 layui-col-md-offset1">
+                        <div class="product-price">￥9999元</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="item layui-col-md3">
+            <a href="">
+                <div class="img"><img src="images/portal/00GuangBo1040A5GBR0731/collect.png" alt="" /></div>
+                <div class="product-info">
+                    <div class="layui-col-md6 layui-col-md-offset1">
+                        <div class="product-title">客厅</div>
+                        <div class="product-sell-point">大大大大大大大大大大大大大大大大</div>
+                    </div>
+                    <div class="layui-col-md4 layui-col-md-offset1">
+                        <div class="product-price">￥9999元</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+
+</div>
+<script>
+    $(document).ready(function() {
+
+
+    });
+
+    let defaultOption = '<option value="0">----- 请选择 -----</option>';
+    layui.use('form', function(){
+        var form = layui.form;
+        $("#box").empty();
+        showProductList();
+        $("#kind1").empty();
+        $("#kind2").empty();
+
+        showProvinceList();
+        $("#kind2").append(defaultOption);
+
+        form.on('select(kind1)', function (data) {
+            console.log("省改变监听");
+            showCityList();
+        });
+
+        form.on('submit(filter_product)',function (data){
+           showFilterProductList();
+        });
+        function showProvinceList() {
+
+            $("#kind1").append(defaultOption);
+            $.ajax({
+                url: "/product_kind",
+                type: "GET",
+                data: "parent=86",
+                dataType: "JSON",
+                success: function (json) {
+                    if (json.state == 200) {
+                        let list = json.data;
+                        console.log("count=" + list.length);
+                        for (let i = 0; i < list.length; i++) {
+                            console.log(list[i].name);
+                            let option = '<option value="' + list[i].code + '">' + list[i].name + '</option>';
+                            $("#kind1").append(option);
+                            form.render('select');
+                        }
+                    }
+                }
+            });
+
+        }
+
+        function showCityList() {
+
+            let parent = $("#kind1").val();
+            $("#kind2").empty();
+            $("#kind2").append(defaultOption);
+
+
+
+            $.ajax({
+                url: "/product_kind",
+                type: "GET",
+                data: "parent=" + parent,
+                dataType: "JSON",
+                success: function (json) {
+                    if (json.state == 200) {
+                        let list = json.data;
+                        console.log("count=" + list.length);
+                        for (let i = 0; i < list.length; i++) {
+                            console.log(list[i].name);
+                            let option = '<option value="' + list[i].code + '">' + list[i].name + '</option>';
+                            $("#kind2").append(option);
+                            form.render('select');
+                        }
+                    }
+                }
+            });
+        }
+
+
+        function showProductList() {
+
+
+            $.ajax({
+                url: "/products/product_list",
+                type: "GET",
+                dataType: "JSON",
+                sync: false,
+                success: function (json) {
+
+                    let list = json.data;
+                    console.log("count=" + list.length);
+                    for (let i = 0; i < list.length; i++) {
+                        console.log(list[i].title);
+                        let html = '<div class="item layui-col-md3"><a href="product.html?id=#{id}"> <div class="img"><img src="#{image}" id="pic_#{id}" alt=""/></div><div class="product-info"><div class="layui-col-md6 layui-col-md-offset1"> <div class="product-title">#{title}</div> <div class="product-sell-point">#{sell-point}</div> </div> <div class="layui-col-md4 layui-col-md-offset1"> <div class="product-price">￥#{price}元</div> </div> </div> </a> </div>';
+
+
+                        html = html.replace(/#{id}/g, list[i].id);
+                        html = html.replace(/#{title}/g, list[i].title);
+                        html = html.replace(/#{sell-point}/g, list[i].sellPoint);
+                        html = html.replace(/#{price}/g, list[i].price);
+                        // html = html.replace(/#{image}/g, "../store_page/images/product_pics/"+list[i].id+"/1.avif");
+
+                        $("#box").append(html);
+                    }
+                    showPic();
+                }
+            });
+
+
+        }
+        function showFilterProductList() {
+            console.log("筛选："+$("#filter").serialize())
+
+            $.ajax({
+                url: "/products/filter_product_list",
+                type: "POST",
+                data: $("#filter").serialize(),
+                dataType: "JSON",
+                sync: false,
+                success: function (json) {
+                    $("#box").empty();
+                    let list = json.data;
+                    console.log("count=" + list.length);
+                    for (let i = 0; i < list.length; i++) {
+                        console.log(list[i].title);
+                        let html = '<div class="item layui-col-md3"><a href="product.html?id=#{id}"> <div class="img"><img src="#{image}" id="pic_#{id}" alt=""/></div><div class="product-info"><div class="layui-col-md6 layui-col-md-offset1"> <div class="product-title">#{title}</div> <div class="product-sell-point">#{sell-point}</div> </div> <div class="layui-col-md4 layui-col-md-offset1"> <div class="product-price">￥#{price}元</div> </div> </div> </a> </div>';
+
+
+                        html = html.replace(/#{id}/g, list[i].id);
+                        html = html.replace(/#{title}/g, list[i].title);
+                        html = html.replace(/#{sell-point}/g, list[i].sellPoint);
+                        html = html.replace(/#{price}/g, list[i].price);
+                        // html = html.replace(/#{image}/g, "../store_page/images/product_pics/"+list[i].id+"/1.avif");
+
+                        $("#box").append(html);
+                    }
+                    showPic();
+                }
+            });
+        }
+
+        function showPic() {
+
+            $.ajax({
+                url: "/picture/0/0/find_pics",
+                type: "GET",
+                dataType: "JSON",
+                sync: false,
+                success: function (json) {
+
+                    let list = json.data;
+                    console.log("count=" + list.length);
+                    for (let i = 0; i < list.length; i++) {
+                        console.log(list[i].path);
+                        console.log("#pic_" + list[i].productId);
+                        $("#pic_" + list[i].productId).attr("src", "/file/" + list[i].path);
+                    }
+                }
+            });
+        }
+
+    });
+
+
+</script>
+</body>
+

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../lib/layui-v2.8/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <script src="../../js/jquery-1.9.1.min.js"></script>
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form" id="add_area">
+
+
+    <form id="form-add-address">
+        <div class="layui-form-item">
+            <label class="layui-form-label required">收件人</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" lay-verify="required" lay-reqtext="收件人不能为空"
+                       placeholder="请输入收件人姓名" value="" class="layui-input">
+
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">手机</label>
+            <div class="layui-input-block">
+                <input type="number" name="phone" lay-verify="required" lay-reqtext="收件人不能为空"
+                       placeholder="请输入手机" value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮政编码</label>
+            <div class="layui-input-block">
+                <input name="zip" type="text" name="work" placeholder="请输入邮政编码" value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">地址</label>
+            <div class="layui-input-inline">
+                <select id="province-list" lay-filter="province-list" name="provinceCode">
+                    <option value="">请选择省</option>
+                    <option value="浙江">浙江省</option>
+                    <option value="你的工号">江西省</option>
+                    <option value="你最喜欢的老师">福建省</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select id="city-list" lay-filter="city-list" name="cityCode">
+                    <option value="">请选择市</option>
+                    <option value="杭州">杭州</option>
+                    <option value="宁波">宁波</option>
+                    <option value="温州">温州</option>
+                    <option value="温州">台州</option>
+                    <option value="温州">绍兴</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select id="area-list" name="areaCode">
+                    <option value="">请选择县/区</option>
+                    <option value="西湖区">西湖区</option>
+                    <option value="余杭区">余杭区</option>
+                    <option value="拱墅区">临安市</option>
+                </select>
+            </div>
+            <div class="layui-form-mid layui-word-aux">此处只是演示联动排版，并未做联动交互</div>
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">详细地址</label>
+            <div class="layui-input-block">
+                <textarea name="remark" class="layui-textarea"></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button id="btn-add-address" class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn_address">
+                    确认保存
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+<script src="../../lib/layui-v2.8/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/jquery-getUrlParam.js"></script>
+<script>
+
+    layui.use(['upload', 'element', 'form'], function () {
+        var form = layui.form,
+            layer = layui.layer;
+
+        var $ = layui.jquery
+            , upload = layui.upload
+            , element = layui.element;
+
+        form_add = $("#form-add-address");
+        add_url = "/addresses/add_new_address";
+        $('#form-add-product').empty();
+        $("#form-add-picture").empty();
+        $(document).ready(function () {
+            $("#form-add-picture").hide()
+            $("#province-list").empty();
+            $("#city-list").empty();
+            $("#area-list").empty();
+            showProvinceList();
+            console.log("省改变");
+            $("#city-list").append(defaultOption);
+            $("#area-list").append(defaultOption);
+        });
+
+        form.on('select(province-list)', function (data) {
+            console.log("省改变监听");
+            showCityList();
+        });
+
+        form.on('select(city-list)', function (data) {
+            console.log("市改变监听");
+            showAreaList();
+        });
+
+
+        form.on('submit(saveBtn_address)', function (data) {
+            $.ajax({
+                url: add_url,
+                type: "POST",
+                data: form_add.serialize(),
+                dataType: "JSON",
+                success: function (json) {
+                    if (json.state == 200) {
+                        // alert("新增收货地址成功！");
+                        var index = layer.alert("添加成功", {
+                            title: '提示'
+                        }, function () {
+                            // 关闭弹出层
+                            layer.close(index);
+                            var iframeIndex = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(iframeIndex);
+
+                        });
+
+                    } else {
+                        alert("新增收货地址失败！" + json.message);
+                    }
+                },
+                error: function (xhr) {
+                    alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
+                    location.href = "login.html";
+                }
+            });
+
+
+            return false;
+        });
+
+
+
+        function showProvinceList() {
+
+            $("#province-list").append(defaultOption);
+            $.ajax({
+                url: "/districts",
+                type: "GET",
+                data: "parent=86",
+                dataType: "JSON",
+                success: function (json) {
+                    if (json.state == 200) {
+                        let list = json.data;
+                        console.log("count=" + list.length);
+                        for (let i = 0; i < list.length; i++) {
+                            console.log(list[i].name);
+                            let option = '<option value="' + list[i].code + '">' + list[i].name + '</option>';
+                            $("#province-list").append(option);
+                            form.render('select');
+                        }
+                    }
+                }
+            });
+
+        }
+
+        function showCityList() {
+
+            let parent = $("#province-list").val();
+            $("#city-list").empty();
+            $("#area-list").empty();
+
+            $("#city-list").append(defaultOption);
+            $("#area-list").append(defaultOption);
+
+
+            $.ajax({
+                url: "/districts",
+                type: "GET",
+                data: "parent=" + parent,
+                dataType: "JSON",
+                success: function (json) {
+                    if (json.state == 200) {
+                        let list = json.data;
+                        console.log("count=" + list.length);
+                        for (let i = 0; i < list.length; i++) {
+                            console.log(list[i].name);
+                            let option = '<option value="' + list[i].code + '">' + list[i].name + '</option>';
+                            $("#city-list").append(option);
+                            form.render('select');
+                        }
+                    }
+                }
+            });
+        }
+
+        function showAreaList() {
+            let parent = $("#city-list").val();
+            $("#area-list").empty();
+            $("#area-list").append(defaultOption);
+
+            if (parent == 0) {
+                return;
+            }
+
+            $.ajax({
+                url: "/districts",
+                type: "GET",
+                data: "parent=" + parent,
+                dataType: "JSON",
+                success: function (json) {
+                    if (json.state == 200) {
+                        let list = json.data;
+                        console.log("count=" + list.length);
+                        for (let i = 0; i < list.length; i++) {
+                            console.log(list[i].name);
+                            let option = '<option value="' + list[i].code + '">' + list[i].name + '</option>';
+                            $("#area-list").append(option);
+                            form.render('select');
+                        }
+                    }
+                }
+            });
+        }
+
+
+    });
+
+
+    let defaultOption = '<option value="0">----- 请选择 -----</option>';
+
+
+</script>
+</body>
+</html>

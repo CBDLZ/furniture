@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" href="../lib/layui-v2.6.3/css/layui.css" media="all">
+  <script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+  <script src="../js/jquery-1.9.1.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+</head>
+
+<style>
+  .p_img{
+    width: 100px;
+  }
+</style>
+<body>
+<form class="layui-form" action="order.html">
+
+  <div class="content content-nav-base shopcart-content">
+
+    <div class="cart w1200">
+      <div class="cart-table-th">
+        <div class="th th-chk">
+          <div class="select-all">
+            <div class="cart-checkbox">
+              <input class="" id="selectAll"  lay-filter="selectAll" type="checkbox"  lay-skin="primary" value="true">
+            </div>
+            <label>&nbsp;&nbsp;全选</label>
+          </div>
+        </div>
+        <div class="th th-item">
+          <div class="th-inner">
+            商品
+          </div>
+        </div>
+        <div class="th th-price">
+          <div class="th-inner">
+            单价
+          </div>
+        </div>
+        <div class="th th-amount">
+          <div class="th-inner">
+            数量
+          </div>
+        </div>
+        <div class="th th-sum">
+          <div class="th-inner">
+            小计
+          </div>
+        </div>
+        <div class="th th-op">
+          <div class="th-inner">
+            操作
+          </div>
+        </div>
+      </div>
+      <div id="cart-list" class="OrderList">
+        <div class="order-content" id="list-cont">
+
+          //1
+          <ul class="item-content layui-clear">
+            <li class="th th-chk">
+              <div class="choose">
+                <div class="cart-checkbox">
+                  <input class="CheckBoxShop" name="cids" id="check_#{cid}" lay-skin="primary" type="checkbox"  value="#{cid}"></div>
+              </div>
+            </li>
+            <li class="th th-item">
+              <div class="item-cont">
+                <a href=""><img class="p_img" id="img_#{pid}" src="#{image}" alt=""></a>
+                <div class="text">
+                  <div class="title">#{title}</div>
+                  <p><span>#{sell_point}</span></p>
+                </div>
+              </div>
+            </li>
+            <li class="th th-price">
+              ¥<span id="price-#{cid}" class="th-su">#{realPrice}</span>
+            </li>
+            <li class="th th-amount">
+              <div class="box-btn layui-clear">
+                <div id="numDown" class="less layui-btn" onclick="reduceNum(#{cid})">-</div>
+                <input class="Quantity-input" id="num-#{cid}" type="" name="" value="#{num}" disabled="disabled">
+                <div id="numUp" class="add layui-btn" onclick="addNum(#{cid})">+</div>
+              </div>
+            </li>
+            <li class="th th-sum">
+              <span id="total-price-#{cid}" class="sum">#{totalPrice}</span>
+            </li>
+            <li class="th th-op">
+              <span class="dele-btn">删除</span>
+            </li>
+          </ul>
+          <ul class="item-content layui-clear">
+            <li class="th th-chk">
+              <div class="select-all">
+                <div class="cart-checkbox">
+                  <input class="CheckBoxShop check" type="checkbox" num="all" name="select-all" value="true">
+                </div>
+              </div>
+            </li>
+            <li class="th th-item">
+              <div class="item-cont">
+                <a href="javascript:;"><img src="../res/static/img/paging_img2.jpg" alt=""></a>
+                <div class="text">
+                  <div class="title">宝宝T恤棉质小衫</div>
+                  <p><span>粉色</span>  <span>130</span>cm</p>
+                </div>
+              </div>
+            </li>
+            <li class="th th-price">
+              <span class="th-su">189.00</span>
+            </li>
+            <li class="th th-amount">
+              <div class="box-btn layui-clear">
+                <div class="less layui-btn">-</div>
+                <input class="Quantity-input" type="" name="" value="1" disabled="disabled">
+                <div class="add layui-btn">+</div>
+              </div>
+            </li>
+            <li class="th th-sum">
+              <span class="sum">189.00</span>
+            </li>
+            <li class="th th-op">
+              <span class="dele-btn">删除</span>
+            </li>
+          </ul>
+          <ul class="item-content layui-clear">
+            <li class="th th-chk">
+              <div class="select-all">
+                <div class="cart-checkbox">
+                  <input class="CheckBoxShop check" type="checkbox" num="all" name="select-all" value="true">
+                </div>
+              </div>
+            </li>
+            <li class="th th-item">
+              <div class="item-cont">
+                <a href="javascript:;"><img src="../res/static/img/paging_img3.jpg" alt=""></a>
+                <div class="text">
+                  <div class="title">宝宝T恤棉质小衫</div>
+                  <p><span>粉色</span>  <span>130</span>cm</p>
+                </div>
+              </div>
+            </li>
+            <li class="th th-price">
+              <span class="th-su">189.00</span>
+            </li>
+            <li class="th th-amount">
+              <div class="box-btn layui-clear">
+                <div class="less layui-btn">-</div>
+                <input class="Quantity-input" type="" name="" value="1" disabled="disabled">
+                <div class="add layui-btn">+</div>
+              </div>
+            </li>
+            <li class="th th-sum">
+              <span class="sum">189.00</span>
+            </li>
+            <li class="th th-op">
+              <span class="dele-btn">删除</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
+
+      <div class="FloatBarHolder layui-clear">
+        <div class="th th-chk">
+          <div class="select-all">
+<!--            <div class="cart-checkbox">-->
+<!--              <input class="check-all check" name="select-all" type="checkbox" lay-skin="primary" value="true">-->
+<!--            </div>-->
+            <label>&nbsp;&nbsp;已选<span class="Selected-pieces">0</span>件</label>
+          </div>
+        </div>
+        <div class="th batch-deletion">
+          <span class="batch-dele-btn">批量删除</span>
+        </div>
+        <div class="th Settlement">
+<!--          <button type="button" class="layui-btn" id="confirm" lay-filter="submit">结算</button>-->
+          <input type="button" value="  结  算  " onclick="location='order.html'" class="btn btn-primary btn-lg link-account" />
+        </div>
+
+
+
+
+        <div class="th total">
+          <p>应付：<span class="pieces-total">0</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+<script type="text/javascript">
+
+  // $("#confirm").click(function() {
+  //   console.log("adsjfjaoidfioadj");
+  //   $('input:checkbox').each(function() {
+  //     if ($(this).attr('checked') ==true) {
+  //       console.log($(this).val());
+  //     }
+  //   });
+  //
+  //   // location.href = 'order.html';
+  // });
+
+  layui.use('form', function(){
+    var form = layui.form;
+
+
+
+    form.on('checkbox',function (data){
+      console.log("复选框点击"+data.value);
+    })
+
+    form.on('checkbox(selectAll)',function (data){
+      console.log("全选");
+
+    })
+    form.on('checkbox(selectAll)', function (data) { //监听全选
+      statesList = $('input[name=cids]');
+      statesLen = statesList.length;
+      if (data.elem.checked) {   //全选
+        checkedStatesList = [];
+        statesList.each(function () {
+          this.checked = true;
+        })
+      } else {         //全不选
+        checkedStatesList = [];
+        statesList.each(function () {
+          this.checked = false;
+        })
+      }
+      form.render();
+    });
+
+
+    $(document).ready(function() {
+      showCartList();
+
+    });
+    function showCartList() {
+      // $("#cart-list").empty();
+      $.ajax({
+        url: "/carts",
+        type: "GET",
+        dataType: "JSON",
+        sync: false,
+        success: function(json) {
+          let list = json.data;
+          for (let i = 0; i < list.length; i++) {
+            // let tr = ' <ul class="item-content layui-clear" id="item_#{cid}">\n' +
+            //         '            <li class="th th-chk">\n' +
+            //         '              <div class="choose">\n' +
+            //         '                <div class="cart-checkbox">\n' +
+            //         '                  <input class="CheckBoxShop" id="check_#{cid}"  lay-skin="primary" type="checkbox"  value="#{cid}">\n' +
+            //         '                </div>\n' +
+            //         '              </div>\n' +
+            //         '            </li>\n' +
+            //         '            <li class="th th-item">\n' +
+            //         '              <div class="item-cont">\n' +
+            //         '                <a href=""><img class="p_img" id="img_#{pid}" src="#{image}" alt=""></a>\n' +
+            //         '                <div class="text">\n' +
+            //         '                  <div class="title">#{title}</div>\n' +
+            //         '                  <p><span>#{sell_point}</span></p>\n' +
+            //         '                </div>\n' +
+            //         '              </div>\n' +
+            //         '            </li>\n' +
+            //         '            <li class="th th-price">\n' +
+            //         '              ¥<span id="price-#{cid}" class="th-su">#{realPrice}</span>\n' +
+            //         '            </li>\n' +
+            //         '            <li class="th th-amount">\n' +
+            //         '              <div class="box-btn layui-clear">\n' +
+            //         '                <div id="numDown" class="less layui-btn" onclick="reduceNum(#{cid})">-</div>\n' +
+            //         '                <input class="Quantity-input" id="num-#{cid}" type="" name="" value="#{num}" disabled="disabled">\n' +
+            //         '                <div id="numUp" class="add layui-btn" onclick="addNum(#{cid})">+</div>\n' +
+            //         '              </div>\n' +
+            //         '            </li>\n' +
+            //         '            <li class="th th-sum">\n' +
+            //         '              <span id="total-price-#{cid}" class="sum">#{totalPrice}</span>\n' +
+            //         '            </li>\n' +
+            //         '            <li class="th th-op">\n' +
+            //         '              <span class="dele-btn">删除</span>\n' +
+            //         '            </li>\n' +
+            //         '          </ul>'
+            let tr = ' <ul class="item-content layui-clear">\n' +
+                    '            <li class="th th-chk">\n' +
+                    '              <div class="choose">\n' +
+                    '                <div class="cart-checkbox">\n' +
+                    '                  <input class="CheckBoxShop" name="cids" id="check_#{cid}" lay-skin="primary" type="checkbox"  value="#{cid}"></div>\n' +
+                    '              </div>\n' +
+                    '            </li>\n' +
+                    '            <li class="th th-item">\n' +
+                    '              <div class="item-cont">\n' +
+                    '                <a href=""><img class="p_img" id="img_#{pid}" src="#{image}" alt=""></a>\n' +
+                    '                <div class="text">\n' +
+                    '                  <div class="title">#{title}</div>\n' +
+                    '                  <p><span>#{sell_point}</span></p>\n' +
+                    '                </div>\n' +
+                    '              </div>\n' +
+                    '            </li>\n' +
+                    '            <li class="th th-price">\n' +
+                    '              ¥<span id="price-#{cid}" class="th-su">#{realPrice}</span>\n' +
+                    '            </li>\n' +
+                    '            <li class="th th-amount">\n' +
+                    '              <div class="box-btn layui-clear">\n' +
+                    '                <div id="numDown" class="less layui-btn" onclick="reduceNum(#{cid})">-</div>\n' +
+                    '                <input class="Quantity-input" id="num-#{cid}" type="" name="" value="#{num}" disabled="disabled">\n' +
+                    '                <div id="numUp" class="add layui-btn" onclick="addNum(#{cid})">+</div>\n' +
+                    '              </div>\n' +
+                    '            </li>\n' +
+                    '            <li class="th th-sum">\n' +
+                    '              <span id="total-price-#{cid}" class="sum">#{totalPrice}</span>\n' +
+                    '            </li>\n' +
+                    '            <li class="th th-op">\n' +
+                    '              <span class="dele-btn">删除</span>\n' +
+                    '            </li>\n' +
+                    '          </ul>'
+
+            tr = tr.replace(/#{cid}/g, list[i].cid);
+            tr = tr.replace(/#{title}/g, list[i].title);
+            tr = tr.replace(/#{sell_point}/g, list[i].sellPoint);
+            tr = tr.replace(/#{pid}/g, list[i].pid);
+            tr = tr.replace(/#{realPrice}/g, list[i].realPrice);
+            tr = tr.replace(/#{num}/g, list[i].num);
+            tr = tr.replace(/#{totalPrice}/g, list[i].realPrice * list[i].num);
+            pid = list[i].pid;
+
+            // if (list[i].realPrice < list[i].price) {
+            //   tr = tr.replace(/#{msg}/g, "比加入时降价" + (list[i].price - list[i].realPrice) + "元");
+            // } else {
+            //   tr = tr.replace(/#{msg}/g, "");
+            // }
+            $("#cart-list").append(tr);
+            form.render('checkbox');
+          }
+          findPic()
+        }
+      });
+    }
+
+    function findPic(){
+      //获取商品详情图片
+      $.ajax({
+        url: "/picture/0/0/find_pics",
+        type: "GET",
+        dataType: "JSON",
+        sync:false,
+        success: function (json) {
+
+          let list = json.data;
+          console.log("count=" + list.length);
+          for (let i = 0; i < list.length; i++) {
+            console.log(list[i].path);
+            console.log("#img_"+list[i].productId);
+            $("#img_"+list[i].productId).attr("src", "/file/" + list[i].path);
+          }
+        }
+      });
+    }
+
+
+  });
+
+
+  //数量加减
+  function addNum(cid) {
+    var n = parseInt($("#num-"+cid).val());
+    $("#num-"+cid).val(n + 1);
+    calcRow(cid);
+    numChange(cid);
+  }
+  /*按减号数量减*/
+  function reduceNum(cid) {
+    var n = parseInt($("#num-"+cid).val());
+    if (n == 1)
+      return;
+    $("#num-"+cid).val(n - 1);
+    calcRow(cid);
+    numChange(cid);
+  }
+
+  //重新计算总价
+  function calcRow(cid) {
+    //取单价
+    var vprice = parseFloat($("#price-"+cid).html());
+    console.log($("#price-"+cid).html());
+    //取数量
+    var vnum = parseFloat($("#num-"+cid).val());
+    console.log(vnum);
+    //小计金额
+    var vtotal = vprice * vnum;
+    //赋值
+    $("#total-price-"+cid).html(vtotal);
+  }
+
+  //数量改变同步到数据库
+  function numChange(cid) {
+    $.ajax({
+      url: "/carts/" + cid + "/num/add",
+      data: "num="+$("#num-"+cid).val(),
+      type: "POST",
+      dataType: "JSON",
+      success: function(json) {
+        if (json.state == 200) {
+          // alert("增加商品数量成功！" + json.message);
+        } else {
+          alert("增加商品数量失败！" + json.message);
+        }
+      },
+      error: function(xhr) {
+        alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
+        location.href = "login.html";
+      }
+    });
+  }
+
+
+  //删除按钮
+  function delCartItem(btn) {
+
+    $(btn).parents("tr").remove();
+    //calcTotal();
+  }
+  //批量删除按钮
+  function selDelCart() {
+    //遍历所有按钮
+    for (var i = $(".ckitem").length - 1; i >= 0; i--) {
+      //如果选中
+      if ($(".ckitem")[i].checked) {
+        //删除
+        $($(".ckitem")[i]).parents("tr").remove();
+      }
+    }
+    //calcTotal();
+  }
+
+
+
+
+
+</script>
+</body>
+</html>

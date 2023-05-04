@@ -1,0 +1,101 @@
+package com.cy.store.controller;
+
+import com.cy.store.controller.ex.*;
+import com.cy.store.controller.ex.ProductNotFoundException;
+import com.cy.store.service.ex.*;
+import com.cy.store.util.JsonResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import javax.servlet.http.HttpSession;
+
+public class BaseController {
+    /** 操作成功的状态码 */
+    public static final int OK = 200;
+    public static final int CODE = 0;
+
+    /** @ExceptionHandler用于统一处理方法抛出的异常 */
+    @ExceptionHandler({ServiceException.class, FileUploadException.class})
+    public JsonResult<Void> handleException(Throwable e) {
+        JsonResult<Void> result = new JsonResult<Void>(e);
+        if (e instanceof UsernameDuplicateException) {
+            result.setState(4000);
+            result.setCode(111);
+        }else if (e instanceof InsertException) {
+            result.setState(5001);
+            result.setCode(111);
+            result.setMessage("用户数据不存在");
+        }else if (e instanceof InsertException) {
+            result.setState(5002);
+            result.setCode(111);
+            result.setMessage("密码错误");
+        } else if (e instanceof InsertException) {
+            result.setState(5000);
+            result.setCode(111);
+            result.setMessage("插入数据异常");
+        }else if (e instanceof InsertException) {
+            result.setState(5001);
+            result.setCode(111);
+            result.setMessage("更新数据异常");
+        } else if (e instanceof FileEmptyException) {
+            result.setState(6000);
+            result.setCode(111);
+        } else if (e instanceof FileSizeException) {
+            result.setState(6001);
+            result.setCode(111);
+        } else if (e instanceof FileTypeException) {
+            result.setState(6002);
+            result.setCode(111);
+        } else if (e instanceof FileStateException) {
+            result.setState(6003);
+            result.setCode(111);
+        } else if (e instanceof FileUploadIOException) {
+            result.setState(6004);
+            result.setCode(111);
+        }else if (e instanceof AddressCountLimitException) {
+            result.setState(4003);
+            result.setCode(111);
+            result.setMessage("用户地址超出上限");
+        }else if (e instanceof AddressNotFoundException) {
+            result.setState(4004);
+            result.setCode(111);
+            result.setMessage("用户收货地址数据不存在的异常");
+        } else if (e instanceof AccessDeniedException) {
+            result.setState(4005);
+            result.setCode(111);
+            result.setMessage("用户收货地址数据非法访问的异常");
+
+        }else if (e instanceof DeleteException) {
+            result.setState(5002);
+            result.setCode(111);
+            result.setMessage("删除异常");
+        }else if (e instanceof ProductNotFoundException) {
+            result.setState(4006);
+            result.setCode(111);
+            result.setMessage("商品数据不存在");
+        }else if (e instanceof CartNotFoundException) {
+            result.setState(4007);
+            result.setCode(111);
+            result.setMessage("购物车数据不存在");
+        }
+
+        return result;
+    }
+
+    /**
+     * 从HttpSession对象中获取uid
+     * @param session HttpSession对象
+     * @return 当前登录的用户的id
+     */
+    protected final Integer getUidFromSession(HttpSession session) {
+        return Integer.valueOf(session.getAttribute("uid").toString());
+    }
+
+    /**
+     * 从HttpSession对象中获取用户名
+     * @param session HttpSession对象
+     * @return 当前登录的用户名
+     */
+    protected final String getUsernameFromSession(HttpSession session) {
+        return session.getAttribute("username").toString();
+    }
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--导入核心文件-->
+    <script src="../../store_web/bootstrap3/js/holder.js"></script>
+
+    <script src="../../store_web/bootstrap3/jquery-1.9.1.min.js"></script>
+
+    <title>注册</title>
+    <style>
+        * {
+            font-family:"苹方-简";
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url("../../new_web/images/bg.jpg");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            /*background: linear-gradient(to bottom, #f1f4f9, #dff1ff);;*/
+        }
+
+        .container {
+            position: relative;
+            min-width: 700px;
+            min-height: 500px;
+            background: rgba(245, 245, 245, 0.418);
+            box-shadow: -6px -6px 20px rgba(255, 255, 255, 1), 4px 4px 15px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            ilter: blur(100px);
+            border-radius: 50px;
+
+        }
+
+        .form {
+            position: relative;
+        }
+
+        .form h2 {
+            position: relative;
+            color: #55c3d7;
+            font-size: 30px;
+            font-weight: 600;
+            letter-spacing: 10px;
+            margin-bottom: 35px;
+        }
+
+        .form h2:before {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            width: 0px;
+            height: 3px;
+            background: #55c3d7;
+            transition: 0.5s;
+        }
+
+        .form h2:hover:before {
+            width: 70px;
+        }
+
+        .form .inputbox {
+            margin-bottom: 35px;
+            width: 300px;
+        }
+
+        .form .inputbox input {
+            width: 100%;
+
+            padding: 10px 20px;
+            background: whitesmoke;
+            outline: none;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .form .inputbox ::-webkit-input-placeholder {
+            color: rgb(160, 160, 160);
+            font-size: 12px;
+        }
+
+        .loginbtn {
+            color: rgb(99, 99, 99);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .loginbtn input {
+            color: #55c3d7;
+            max-width: 120px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            padding: 10px 20px;
+            background: whitesmoke;
+            border: none;
+            border-radius: 30px;
+        }
+
+        .forget {
+            position: relative;
+            color: rgb(99, 99, 99);
+            letter-spacing: 1px;
+            margin-right: 10px;
+        }
+
+        .forget a:before {
+            content: "";
+            position: absolute;
+            top: 25px;
+            width: 0px;
+            height: 2px;
+            background: rgb(99, 99, 99);
+            transition: 0.5s;
+        }
+
+        .forget a {
+            font-weight: 600;
+            text-decoration: none;
+            color: rgb(99, 99, 99);
+        }
+
+        .forget a:hover:before {
+            width: 65px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form">
+        <h2>注册</h2>
+        <form id="form-reg" role="form">
+            <div class="inputbox">
+                <input name="username" type="text" id="username" placeholder="账号">
+            </div>
+            <div class="inputbox">
+                <input name="password" type="password" placeholder="密码">
+            </div>
+            <div class="inputbox">
+                <input type="password" placeholder="确认密码">
+            </div>
+
+            <div class="loginbtn">
+                <input type="button" id="btn-reg" value="注册" >
+            </div>
+
+
+
+        </form>
+    </div>
+</div>
+
+<script>
+    $("#btn-reg").click(function() {
+        console.log($("#form-reg").serialize());
+        $.ajax({
+            url: "/users/reg",
+            type: "POST",
+            data: $("#form-reg").serialize(),
+            dataType: "json",
+            success: function(json) {
+                if (json.state == 200) {
+                    alert("注册成功！");
+                    location.href = "login.html";
+                } else {
+                    alert("注册失败！" + json.message);
+                }
+            },
+            error: function (xhr) {
+                alert("注册时未知错误" + xhr.status)
+            }
+        });
+    });
+</script>
+</body>
+</html>

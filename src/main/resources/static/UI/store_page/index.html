@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="../lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+
+
+<div class="layui-row">
+    <div class="layui-col-md12" style="height: 60px">
+        <ul class="layui-nav layui-bg-green" style="margin: 0px">
+            <li class="layui-nav-item"><a style="text-decoration: none;" class="logo" href="">个性化家居</a></li>
+            <li class="layui-nav-item"><a style="text-decoration: none;" href="">首页</a></li>
+            <li class="layui-nav-item"><a style="text-decoration: none;" href="product_list.html">所有家居</a></li>
+            <li class="layui-nav-item"><a style="text-decoration: none;" href="hot.html">灵感分享</a></li>
+            <li class="layui-nav-item"><a style="text-decoration: none;" href="">家居定制</a></li>
+            <li class="layui-nav-item"><a style="text-decoration: none;" href="cart.html">购物车</a></li>
+            <li class="layui-nav-item"><a style="text-decoration: none;" href="../index.html">个人中心</a></li>
+            <li class="layui-nav-item share"><a style="text-decoration: none;" href=""> <i class="layui-icon layui-icon-login-wechat"style="font-size: 30px;"></i></a></li>
+            <li class="layui-nav-item share"><a style="text-decoration: none;" href=""> <i class="layui-icon layui-icon-login-qq"style="font-size: 30px;"></i></a></li>
+            <li class="layui-nav-item share"><a style="text-decoration: none;" href=""> <i class="layui-icon layui-icon-login-weibo"style="font-size: 30px;"></i></a></li>
+
+        </ul>
+    </div>
+</div>
+<div id="myCarousel" class="carousel slide">
+    <!-- 轮播（Carousel）指标 -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+        <li data-target="#myCarousel" data-slide-to="5"></li>
+
+    </ol>
+    <!-- 轮播（Carousel）项目 -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="pic2/pic1.jpg.webp" style="width: 100%" alt="First slide">
+        </div>
+        <div class="item">
+            <img src="pic2/pic2.jpg.webp" style="width: 100%" alt="Second slide">
+        </div>
+
+        <div class="item">
+            <img src="pic2/pic3.jpg.webp" style="width: 100%" alt="Second slide">
+        </div>
+        <div class="item">
+            <img src="pic2/pic4.jpg.webp" style="width: 100%" alt="Second slide">
+        </div>
+        <div class="item">
+            <img src="pic2/pic5.jpg.webp" style="width: 100%" alt="Second slide">
+        </div>
+        <div class="item">
+            <img src="pic2/pic6.jpg.webp" style="width: 100%" alt="Second slide">
+        </div>
+
+
+    </div>
+    <!-- 轮播（Carousel）导航 -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<div class="layui-container">
+
+
+    <div class="layui-row">
+
+        <div class="choose" >
+            <h1 class="layui">定制家居</h1>
+            <br>
+            <form id="form-submit" class="layui-form" action="">
+
+
+
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">风格</label>
+                        <div class="layui-input-inline">
+                            <select name="style" lay-verify="required" id="selectOne">
+                                <option value=""></option>
+                                <option value="日式简约风">日式简约风</option>
+                                <option value="北欧风">北欧风</option>
+                                <option value="新中式">新中式</option>
+                                <option value="波西米亚风格">波西米亚风格</option>
+                                <option value="地中海风格">地中海风格</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">面积</label>
+                        <div class="layui-input-inline"> <!-- 注意：这一层元素并不是必须的 -->
+                            <input name="area" type="text" class="layui-input" >
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">房屋布局</label>
+                        <div class="layui-input-inline"> <!-- 注意：这一层元素并不是必须的 -->
+                            <input name="layout" type="text" class="layui-input" >
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                            <label class="layui-form-label">预算</label>
+                            <div class="layui-input-inline"> <!-- 注意：这一层元素并不是必须的 -->
+                                <input name="budget" type="text" class="layui-input" >
+                            </div>
+
+                    </div>
+
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">电话</label>
+                        <div class="layui-input-inline"> <!-- 注意：这一层元素并不是必须的 -->
+                            <input name="phone" type="text" class="layui-input" >
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">简介</label>
+                        <div class="layui-input-inline"> <!-- 注意：这一层元素并不是必须的 -->
+                            <input name="intro" type="text" class="layui-input" >
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+<!--                <div class="layui-form-item dingzhi">-->
+<!--                    <div class="layui-inline">-->
+<!--                        <label class="layui-form-label">订制需求</label>-->
+<!--                        <div class="layui-input-block">-->
+<!--                            <input name type="checkbox" name="qqq" lay-skin="switch">-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" type="button" id="btn-submit">预约设计师</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <br><br><br>
+    <h1>家居灵感</h1>
+    <br>
+    <div class="row">
+        <div class="col-sm-6 col-md-4">
+            <div class="part col-md-12" style="padding: 0px; padding-bottom: 20px">
+                <div class="imgborder">
+                    <img src="pic2/lg1.jpg" data-toggle="modal" data-target="#myModal" alt="通用的占位符缩略图">
+                </div>
+                <div class="travel_intr">
+                    <div class="travlwrite">
+                        <h3>客厅灵感</h3>
+<!--                        <p>探险旅游是指旅游者到人迹罕至或险状环生的特殊环境着进行的充满神秘性、危险性和刺激性的旅行考察活动。</p><br>-->
+                    </div>
+
+                    <div class="twobtn">
+                        <button data-method="offset" data-type="auto" class="bt1 layui-btn layui-btn-normal">更多</button>
+
+                        <i class="layui-icon layui-icon-heart like1" style="font-size: 30px; color: red"></i>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="part col-md-12" style="padding: 0px; padding-bottom: 20px">
+                <div class="imgborder">
+                    <img src="pic2/lg2.jpg" data-toggle="modal" data-target="#myModal" alt="通用的占位符缩略图">
+                </div>
+                <div class="travel_intr">
+                    <div class="travlwrite">
+                        <h3>卧室灵感</h3>
+<!--                        <p>民俗旅游是指旅游者到异地去体验当地民俗的文化旅游行程。旅游者通过开展民俗旅游活动，亲身体验当地民众生活事项，实现自我完善的旅游目的。</p>-->
+                    </div>
+
+                    <div class="twobtn">
+                        <button data-method="offset" data-type="auto" class="bt2 layui-btn layui-btn-normal">更多</button>
+
+                        <i class="layui-icon layui-icon-heart like2" style="font-size: 30px; color: red"></i>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="part col-md-12" style="padding: 0px; padding-bottom: 20px">
+                <div class="imgborder">
+                    <img src="pic2/lg3.jpg" data-toggle="modal" data-target="#myModal" alt="通用的占位符缩略图">
+                </div>
+                <div class="travel_intr">
+                    <div class="travlwrite">
+                        <h3>浴室布置灵感</h3>
+<!--                        <p>人文景观，是人们在日常生活中，为了满足一些物质和精神等方面需要，在自然景观的基础上，叠加文化特质构成的景观。</p>-->
+                    </div>
+
+                    <div class="twobtn">
+                        <button data-method="offset" data-type="auto" class="bt3 layui-btn layui-btn-normal">更多</button>
+
+                        <i class="layui-icon layui-icon-heart like3" style="font-size: 30px; color: red"></i>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="part col-md-12" style="padding: 0px; padding-bottom: 20px">
+                <div class="imgborder">
+                    <img src="pic2/lg4.jpg" data-toggle="modal" data-target="#myModal" alt="通用的占位符缩略图">
+                </div>
+                <div class="travel_intr">
+                    <div class="travlwrite">
+                        <h3>厨房灵感</h3>
+                    </div>
+
+                    <div class="twobtn">
+                        <button data-method="offset" data-type="auto" class="bt4 layui-btn layui-btn-normal">更多</button>
+
+                        <i class="layui-icon layui-icon-heart like4" style="font-size: 30px; color: red"></i>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="part col-md-12" style="padding: 0px; padding-bottom: 20px">
+                <div class="imgborder">
+                    <img src="pic2/lg5.jpg" data-toggle="modal" data-target="#myModal" alt="通用的占位符缩略图">
+                </div>
+                <div class="travel_intr">
+                    <div class="travlwrite">
+                        <h3>餐厅灵感</h3>
+                    </div>
+
+                    <div class="twobtn">
+                        <button data-method="offset" data-type="auto" class="bt5 layui-btn layui-btn-normal">更多</button>
+
+                        <i class="layui-icon layui-icon-heart like5" style="font-size: 30px; color: red"></i>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="part col-md-12" style="padding: 0px; padding-bottom: 20px">
+                <div class="imgborder">
+                    <img src="pic2/lg6.jpg" data-toggle="modal" data-target="#myModal" alt="通用的占位符缩略图">
+                </div>
+                <div class="travel_intr">
+                    <div class="travlwrite">
+                        <h3>儿童房灵感</h3>
+
+                    </div>
+                    <div class="twobtn">
+                        <button data-method="offset" data-type="auto" class="bt6 layui-btn layui-btn-normal">更多</button>
+
+                        <i class="layui-icon layui-icon-heart like6" style="font-size: 30px; color: red"></i>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <br>
+    <br>
+    <h1>设计师介绍</h1>
+    <br>
+    <div class="layui-row">
+        <div class="layui-col-md12 layui-col-sm12">
+            <div class="layui-row blk">
+                <div class="layui-col-md6  layui-col-sm12 img">
+                    <img src="pic2/sjs1.jpg">
+                </div>
+                <div class="layui-col-md6  layui-col-sm12 introduce">
+                    <h2>原研哉</h2>
+                    <p>日本平面设计大师、日本设计中心的董事、武藏野美术大学基金会教授，无印良品（MUJI）艺术总监。</p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-md12 layui-col-sm12">
+            <div class="layui-row blk">
+                <div class="layui-col-md6  layui-col-sm12 img">
+                    <img src="pic2/sjs2.jpg">
+                </div>
+                <div class="layui-col-md6  layui-col-sm12 introduce">
+                    <h2>乔纳森·艾维</h2>
+                    <p>来自英國的设计师，曾担任苹果公司的首席设计官（chief design officer），主管产品设计和人机界面设计。
+                        他是許多蘋果公司產品的主要設計者與概念發想者，包括Macbook Pro、iMac、MacBook Air、iPod、iPod touch、iPhone和iPad等，並多次參與为苹果产品解说。
+                        2019年11月，伊夫從蘋果公司離職，並與設計師马克·纽森（Marc Newson）共同創立新設計公司LoveFrom，並繼續為客戶蘋果公司提供設計服務。伊夫於2022年7月結束與蘋果公司的關係。</p>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+</div>
+
+</body>
+
+
+<script>
+    layui.use(['layer', 'form'], function(){
+        var layer = layui.layer
+            ,form = layui.form;
+//监听提交
+        form.on('submit(formDemo)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+        layer.msg('Hello World');
+    });
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
+
+        //…
+    });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#test' //指定元素
+        });
+        laydate.render({
+            elem: '#test1' //指定元素
+        });
+    });
+    layui.use('layer', function(){ //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+        //触发事件
+        var active1 = {
+
+            offset: function(othis1){
+                var type = othis1.data('type');
+
+                layer.open({
+                    type: 1
+                    ,title:false
+                    ,offset: type //具体配置参考：http://doc/modules/layer.html#offset
+                    ,id: type //防止重复弹出
+                    ,content: '<div style="width: 1000px"><img src="img/IMG_3817.jpeg" style="width: 100%" alt=""></div><div style="width:1000px;padding: 50px; line-height: 22px; background-color: #ffffff; color: #000000; font-weight: 300;">\n' +
+                        '    探险旅游是指旅游者到人迹罕至或险状环生的特殊环境着进行的充满神秘性、危险性和刺激性的旅行考察活动。<br><br>\n' +
+                        '    按旅游项目可分为三类：<br>\n' +
+                        '    （1）空中。旅游者体验失重感，具体旅游项目有帆伞、悬挂式滑翔机、跳伞、观光飞行、直升机飞行、乘热气球、高处跳伞、蹦极跳等。<br>\n' +
+                        '    （2）陆地。可以体验越野滑雪、从山顶冲下的滑雪、由直升机送上山顶的高山滑雪游览、牛拉车、狩猎远征、缆车、蹦极、山地自行车、冰上牛车、马拉车、 打猎、高山探路、绕绳下滑、攀岩等项目。<br>\n' +
+                        '    （3）水上。游客利用先进的潜水设备，尝试新鲜体验。如“黑水”漂流、租船航行、潜水、汽艇、帆船运动、筏运、皮艇漂流、划独木舟、冲浪等项目。<br>\n' +
+                        '    对于喜欢探险的人群，我们有针对性的选择了一些刺激神秘的旅游景点，如高黎贡山怒江、茶山古道、大海道、楼兰古国罗布泊、喀纳斯原始地带、蜀道、巴颜喀拉山等。<br>\n' +
+                        '\n' +
+                        '</div>'
+                    // ,btn: '关闭全部'
+                    ,btnAlign: 'c' //按钮居中
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                });
+            }
+        };
+        var active2 = {
+
+            offset: function(othis2){
+                var type = othis2.data('type');
+
+                layer.open({
+                    type: 1
+                    ,title:false
+                    ,offset: type //具体配置参考：http://doc/modules/layer.html#offset
+                    ,id: type //防止重复弹出
+                    ,content: '<div style="width: 1000px"><img src="pic/民俗文化.jpeg" style="width: 100%" alt=""></div><div style="width:1000px;padding: 50px; line-height: 22px; background-color: #ffffff; color: #000000; font-weight: 300;">' +
+                        '民俗旅游是指旅游者到异地去体验当地民俗的文化旅游行程。旅游者通过开展民俗旅游活动，亲身体验当地民众生活事项，实现自我完善的旅游目的，从而达到良好的游玩境界。民俗旅游的内容主要包括生活文化、婚姻家庭和人生礼仪文化、口头传承文化、民间歌舞娱乐文化、节日文化、信仰文化等。'
+                        +'<br>（1）民俗节日类。了解到各民族之间节日和习俗的独特性，我们的创意是结合少数民族的节日来推广旅游地，如傣族泼水节、壮族山歌节、蒙古的那达慕、彝族的火把节、白族的三月街、苗族的花山节等。'
+                        +'<br>（2）古建筑美食类。结合地域间文化的差异性来推广旅游景点，不同的地域文化表现在语言、饮食、节庆、信仰、建筑等方面，如八大菜系、六大派古建筑风格、五大宗教、方言的差异。'
+                        +'</div>'
+                    // ,btn: '关闭全部'
+                    ,btnAlign: 'c' //按钮居中
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                });
+            }
+        };
+
+        var active3 = {
+
+            offset: function(othis3){
+                var type = othis3.data('type');
+
+                layer.open({
+                    type: 1
+                    ,title:false
+                    ,offset: type //具体配置参考：http://doc/modules/layer.html#offset
+                    ,id: type //防止重复弹出
+                    ,content: '<div style="width: 1000px"><img src="pic/人文.jpg" style="width: 100%" alt=""></div><div style="width:1000px;padding: 50px; line-height: 22px; background-color: #ffffff; color: #000000; font-weight: 300;">'
+                       +'人文景观，又称文化景观，是人们在日常生活中，为了满足一些物质和精神等方面的需要，在自然景观的基础上，叠加了文化特质而构成的景观。人文景观，最主要的体现即聚落，还包括服饰、建筑、音乐等。建筑方面的特色反映为城堡、宫殿，以及各类宗教建筑景观，具有历史性。'
+                        +'</div>'
+                    // ,btn: '关闭全部'
+                    ,btnAlign: 'c' //按钮居中
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                });
+            }
+        };
+        var active4 = {
+
+            offset: function(othis4){
+                var type = othis4.data('type');
+
+                layer.open({
+                    type: 1
+                    ,title:false
+                    ,offset: type //具体配置参考：http://doc/modules/layer.html#offset
+                    ,id: type //防止重复弹出
+                    ,content: '<div style="width: 1000px"><img src="pic/红色.jpeg" style="width: 100%" alt=""></div><div style="width:1000px;padding: 50px; line-height: 22px; background-color: #ffffff; color: #000000; font-weight: 300;">\n'
+                        +'红色旅游主要是以中国共产党领导人民在革命和战争时期建树丰功伟绩所形成的纪念地、标志物为载体，以其所承载的革命历史、革命事迹和革命精神为内涵，组织接待旅游者开展缅怀学习、参观游览的主题性旅游活动。红色旅游把红色人文景观和绿色自然景观结合起来，把革命传统教育与促进旅游产业发展结合起来的一种新型的主题旅游形式。'
+                        +'</div>'
+                    // ,btn: '关闭全部'
+                    ,btnAlign: 'c' //按钮居中
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                });
+            }
+        };
+        var active5 = {
+
+            offset: function(othis5){
+                var type = othis5.data('type');
+
+                layer.open({
+                    type: 1
+                    ,title:false
+                    ,offset: type //具体配置参考：http://doc/modules/layer.html#offset
+                    ,id: type //防止重复弹出
+                    ,content: '<div style="width: 1000px"><img src="pic/乡村.jpeg" style="width: 100%" alt=""></div><div style="width:1000px;padding: 50px; line-height: 22px; background-color: #ffffff; color: #000000; font-weight: 300;">\n'
+                        +'乡村旅游是以旅游度假为宗旨，以村庄野外为空间，以人文无干扰、生态无破坏、以游居和野行为特色的村野旅游形式。乡村旅游是旅游者到乡村去了解一些乡村民情、礼仪风俗等，也可以观赏当时种植的一些乡村土产、果树、小溪、小桥及了解它们的故事。旅游者也可在乡村及其附近逗留、学习、体验乡村生活模式的活动。'
+                        +'<br>乡村旅游大致可以分为六种类型：'
+                        +'<br>①观光型乡村旅游。观光型乡村旅游以良田、特色蔬菜、花卉苗木、乡村农舍、溪流河岸、园艺场地、绿化地带、产业化农业园区、特种养殖业基地等自然、人文景观为主要内容，主要满足游客回归自然，感受大自然的原始美、天然美，在山清水秀的自然风光和多彩多姿的民族风情中放松自己的需求，从而使他们获得一种心灵上的愉悦感。'
+                        +'<br>②休闲型乡村旅游。根据调查，休闲型乡村旅游以乡村风景为背景，以静宁、松散的乡村氛围为依托，提供棋牌、歌舞、观光采风等休闲娱乐活动服务。也有人将乡村居民的生产、生活场景、器皿工具、房屋建筑、屋内陈设、饮食、服饰、礼仪、节庆活动、婚恋习俗以及民族歌舞和语言等方面的传统特色纳入休闲型乡村旅游中。'
+                        +'<br>③度假型乡村旅游。根据调查，度假型乡村旅游利用乡村“蓝色的”天空、“清新的”空气，让游客乘着习习凉风、呼吸着清新的空气，听着泉水韵律、望着流星明月，感受“天人合一”的审美境界。乡间散步、爬山、滑雪、骑马、划船、漂流等乡村度假健身、娱乐活动也属于这一类型。'
+                        +'<br>④体验型乡村旅游。体验型乡村旅游主要与当地的民俗文化、农业生产和农副产品相结合，通过参与民俗活动修剪花草、捕鱼捞虾、放养动物、水磨磨米面、水车灌溉、石臼舂米、学做乡村风味小吃、木机织布、手工刺绣、陶制品制作等体验乡村生活的质朴淡雅，体验耕种收获的喜悦，是一种整体体验方式。还包括品尝乡村土特产。'
+                        +'<br>⑤求知型乡村旅游。求知型乡村旅游普及农业、农科知识，使游客了解乡村的民风与民俗，如广州市郊和番禺一带的科技农场，沈阳新市民的中小学生实践基地。通过农村留学、参观考察、教育培训等多种形式，开展农业文化考察、特色农业考察、农业技术培训、花木栽培装饰培训、工艺品制作培训、农业知识学习等研修型乡村旅游活动，发挥乡村农业的教育功能。'
+                        +'<br>⑥购物型乡村旅游。购物型乡村旅游是以洁净新鲜的特色蔬菜瓜果、稀有的珍稀禽畜和名贵水产、美丽花卉、别致的盆景、风味独特的土特产、工艺精湛的手工艺品、古朴雅致的农民书画、设计独特的旅游纪念品为资源而开展的旅游活动。'
+                        +'</div>'
+                    // ,btn: '关闭全部'
+                    ,btnAlign: 'c' //按钮居中
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                });
+            }
+        };
+        var active6 = {
+
+            offset: function(othis6){
+                var type = othis6.data('type');
+
+                layer.open({
+                    type: 1
+                    ,title:false
+                    ,offset: type //具体配置参考：http://doc/modules/layer.html#offset
+                    ,id: type //防止重复弹出
+                    ,content: '<div style="width: 1000px"><img src="pic/美食.jpeg" style="width: 100%" alt=""></div><div style="width:1000px;padding: 50px; line-height: 22px; background-color: #ffffff; color: #000000; font-weight: 300;">\n'
+                        +'中国饮食文化是一种广视野、深层次、多角度、高品位的悠久区域文化；是中华各族人民在5000多年的生产和生活实践中，在食源开发、食具研制、食品调理、营养保健和饮食审美等方面创造、积累并影响周边国家和世界的物质财富及精神财富。'
+                        +'</div>'
+                    // ,btn: '关闭全部'
+                    ,btnAlign: 'c' //按钮居中
+                    ,shade: 0 //不显示遮罩
+                    ,yes: function(){
+                        layer.closeAll();
+                    }
+                });
+            }
+        };
+        $('.bt1').on('click', function(){
+            var othis1 = $(this), method = othis1.data('method');
+            active1[method] ? active1[method].call(this, othis1) : '';
+        });
+        $('.bt2').on('click', function(){
+            var othis2 = $(this), method = othis2.data('method');
+            active2[method] ? active2[method].call(this, othis2) : '';
+        });
+        $('.bt3').on('click', function(){
+            var othis3 = $(this), method = othis3.data('method');
+            active3[method] ? active3[method].call(this, othis3) : '';
+        });
+        $('.bt4').on('click', function(){
+            var othis4 = $(this), method = othis4.data('method');
+            active4[method] ? active4[method].call(this, othis4) : '';
+        });
+        $('.bt5').on('click', function(){
+            var othis5 = $(this), method = othis5.data('method');
+            active5[method] ? active5[method].call(this, othis5) : '';
+        });
+        $('.bt6').on('click', function(){
+            var othis6 = $(this), method = othis6.data('method');
+            active6[method] ? active6[method].call(this, othis6) : '';
+        });
+
+
+        //多窗口模式 - esc 键
+        $(document).on('keyup', function(e){
+            if(e.keyCode === 27){
+                layer.close(layer.escIndex ? layer.escIndex[0] : 0);
+            }
+        });
+    });
+
+
+
+    var like1 = $(".like1");
+    var like2 = $(".like2");
+    var like3 = $(".like3");
+    var like4 = $(".like4");
+    var like5 = $(".like5");
+    var like6 = $(".like6");
+    like1.click(function (){
+        like1.removeClass("layui-icon-heart");
+        like1.addClass("layui-icon-heart-fill")
+    });
+
+    like2.click(function (){
+        like2.removeClass("layui-icon-heart");
+        like2.addClass("layui-icon-heart-fill")
+    });
+    like3.click(function (){
+        like3.removeClass("layui-icon-heart");
+        like3.addClass("layui-icon-heart-fill")
+    });
+    like4.click(function (){
+        like4.removeClass("layui-icon-heart");
+        like4.addClass("layui-icon-heart-fill")
+    });
+    like5.click(function (){
+        like5.removeClass("layui-icon-heart");
+        like5.addClass("layui-icon-heart-fill")
+    });
+    like6.click(function (){
+        like6.removeClass("layui-icon-heart");
+        like6.addClass("layui-icon-heart-fill")
+    });
+
+
+    $("#btn-login").click(function() {
+        $.ajax({
+            url: "/users/login",
+            type: "POST",
+            data: $("#form-login").serialize(),
+            dataType: "json",
+            success: function(json) {
+                if (json.state == 200) {
+                    alert("登录成功！");
+                    $.cookie("avatar", json.data.avatar, {expires: 7});
+                    console.log(json.data);
+                    console.log("cookie中的avatar=" + $.cookie("avatar"));
+                    location.href = "index.html";
+                } else {
+                    alert("登录失败！" + json.message);
+                }
+            },error:function (xhs){
+                alert("未知异常"+xhs.message);
+            }
+        });
+    });
+
+    $("#btn-submit").click(function() {
+        $.ajax({
+            url: "/design/new_design",
+            type: "POST",
+            data: $("#form-submit").serialize(),
+            dataType: "json",
+            success: function(json) {
+                if (json.state == 200) {
+                    alert("添加成功！");
+                    console.log(json.data);
+                    // $.cookie("avatar", json.data.avatar, {expires: 7});
+
+                    // console.log("cookie中的avatar=" + $.cookie("avatar"));
+                    location.href = "index.html";
+                } else {
+                    alert("登录失败！" + json.message);
+                }
+            },error:function (xhs){
+                alert("未知异常"+xhs.message);
+            }
+        });
+    });
+
+
+</script>
+
+</html>

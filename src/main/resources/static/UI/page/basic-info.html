@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>个人基本信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <style>
+        .layui-form-item .layui-input-company {width: auto;padding-right: 10px;line-height: 38px;}
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <div class="layui-form layuimini-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label required">姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" id="username" name="username" lay-verify="required" placeholder="请输入姓名" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label required">手机号码</label>
+                <div class="layui-input-block">
+                    <input type="text" id="phone" name="phone" lay-verify="required" lay-reqtext="不能为空" placeholder="请输入" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="email" name="email" lay-verify="number" class="layui-input">
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                    <select id="gender" name="gender">
+                        <option value=""></option>
+                        <option value="0">男</option>
+                        <option value="1">女</option>
+                        <option value="2">其他</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="setting">确认保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script>
+
+    $(document).ready(function() {
+        $.ajax({
+            url: "/users/get_by_uid",
+            type: "GET",
+            dataType: "json",
+            success: function(json) {
+                if (json.state == 200) {
+                    console.log("username=" + json.data.username);
+                    console.log("phone=" + json.data.phone);
+                    console.log("email=" + json.data.email);
+                    console.log("gender=" + json.data.gender);
+
+                    $("#username").val(json.data.username);
+                    $("#phone").val(json.data.phone);
+                    $("#email").val(json.data.email);
+                    $("#gender").val(json.data.gender);
+                    layui.form.render('select');
+
+                } else {
+                    alert("获取用户信息失败！" + json.message);
+                }
+            }
+        });
+    });
+    layui.use(['form'], function () {
+        var form = layui.form
+            , layer = layui.layer;
+        //监听提交
+        form.on('submit(setting)', function (data) {
+            console.log(data.field);
+            $.ajax({
+                url: "/users/change_info",
+                type: "POST",
+                data: data.field,
+                dataType: "json",
+                success: function(json) {
+                    if (json.state == 200) {
+                        alert("修改成功！");
+                    } else {
+                        alert("修改失败！" + json.message);
+                    }
+                },
+                error: function(xhr) {
+                    alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
+
+                }
+            });
+            // parent.layer.alert(JSON.stringify(data.field), {
+            //     title: '最终的提交信息'
+            // });
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

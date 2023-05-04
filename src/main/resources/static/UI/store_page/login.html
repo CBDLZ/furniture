@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--导入核心文件-->
+    <script src="bootstrap3/js/holder.js"></script>
+    <script src="bootstrap3/jquery-1.9.1.min.js"></script>
+    <script src="bootstrap3/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../lib/layui-v2.6.3/css/layui.css" media="all">
+    <script src="bootstrap3/js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+
+    <title>登录</title>
+    <style>
+        * {
+            font-family:"苹方-简";
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url("images/bg.jpg");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            /*background: linear-gradient(to bottom, #f1f4f9, #dff1ff);;*/
+        }
+
+        .login_container {
+            position: relative;
+            min-width: 600px;
+            min-height: 500px;
+            background: rgba(245, 245, 245, 0.418);
+            box-shadow: -6px -6px 20px rgba(255, 255, 255, 1), 4px 4px 15px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*background-filter: blur(50px);*/
+            border-radius: 50px;
+            z-index: 1;
+        }
+
+        .login_container:after {
+            filter: blur(100px);
+            z-index: 2;
+        }
+
+        .form {
+            position: relative;
+        }
+
+        .form h2 {
+            position: relative;
+            color: #55c3d7;
+            font-size: 30px;
+            font-weight: 600;
+            letter-spacing: 10px;
+
+        }
+
+        .form h2:before {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            width: 0px;
+            height: 3px;
+            background: #55c3d7;
+            transition: 0.5s;
+        }
+
+        .form h2:hover:before {
+            width: 70px;
+        }
+
+        .form .inputbox {
+            margin-bottom: 35px;
+        }
+
+        .form .inputbox input {
+            width: 100%;
+
+            padding: 10px 20px;
+            background: whitesmoke;
+            outline: none;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .form .inputbox ::-webkit-input-placeholder {
+            color: rgb(160, 160, 160);
+            font-size: 12px;
+        }
+
+        .loginbtn {
+            color: rgb(99, 99, 99);
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .loginbtn input {
+            color: #55c3d7;
+            max-width: 120px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            padding: 10px 20px;
+            background: whitesmoke;
+            border: none;
+            border-radius: 30px;
+        }
+
+        .forget {
+            position: relative;
+            color: rgb(99, 99, 99);
+            letter-spacing: 1px;
+            margin-right: 10px;
+        }
+
+        .forget a:before {
+            content: "";
+            position: absolute;
+            top: 25px;
+            width: 0px;
+            height: 2px;
+            background: rgb(99, 99, 99);
+            transition: 0.5s;
+        }
+
+        .forget a {
+            font-weight: 600;
+            text-decoration: none;
+            color: rgb(99, 99, 99);
+        }
+
+        .forget a:hover:before {
+            width: 65px;
+        }
+        .spline {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login_container">
+    <div class="form">
+        <div class="layui-row">
+
+
+            <div class="login">
+                <h2>登录</h2>
+                <form id="form-login" action="" role="form">
+                    <div class="inputbox">
+                        <input name="username" type="text" id="username" placeholder="账号">
+                    </div>
+                    <div class="inputbox">
+                        <input name="password" type="password" id="password"  placeholder="密码">
+                    </div>
+
+                    <div class="loginbtn">
+                        <input type="button" id="btn-login" value="登录">
+                    </div>
+
+
+                    <span class="forget">忘记密码？<a href="#">点击这里</a></span>
+                    <span class="forget">没有账户？<a href="register.html">点击注册</a></span>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+    $("#btn-login").click(function() {
+        $.ajax({
+            url: "/users/login",
+            type: "POST",
+            data: $("#form-login").serialize(),
+            dataType: "json",
+            success: function(json) {
+                if (json.state == 200) {
+                    alert("登录成功！");
+                    console.log(json.data);
+                    $.cookie("avatar", json.data.avatar, {expires: 7});
+
+                    // console.log("cookie中的avatar=" + $.cookie("avatar"));
+                    location.href = "index.html";
+                } else {
+                    alert("登录失败！" + json.message);
+                }
+            },error:function (xhs){
+                alert("未知异常"+xhs.message);
+            }
+        });
+    });
+</script>
+</body>
+</html>

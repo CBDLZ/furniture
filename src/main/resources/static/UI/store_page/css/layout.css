@@ -1,0 +1,88 @@
+/*通用的去ul默认格式*/
+ul,li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+body {
+	font-family: "微软雅黑", "黑体";
+}
+.txtred{
+	color: red;
+}
+.title-row-2 {
+	line-height: 1.2em;
+	height: 2.4em;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.title-row-1 {
+	line-height: 1.2em;
+	height: 1.2em;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
+.li-row-1 {
+	line-height: 1.2em;
+	height: 1.2em;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
+.text-row-3 {
+	line-height: 1.2em;
+	height: 3.6em;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+.text-row-2 {
+	line-height: 1.2em;
+	height: 2.4em;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.text-row-1 {
+	line-height: 1.2em;
+	height: 1.2em;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
+
+/*高亮显示的*/
+.order-bar-active {
+	background-color: #4288c3;
+	color: #ffffff;
+	min-height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 5px;
+}
+/*非高亮显示的*/
+.order-bar-undo {
+	background-color: #cccccc;
+	min-height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 5px;
+}
+.pay-bar {
+	height: 70px;
+}
+.pay-res {
+	color: #4288c3;
+	font-size: 40px;
+}
+.pay-res-icon {
+	font-size: 50px;
+}
