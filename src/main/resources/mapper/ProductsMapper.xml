@@ -143,13 +143,13 @@
         AND height &lt;= #{maxHeight}
       </if>
     </where>
-    order by
+
     <choose>
       <when test="priceSort == 2">
-        price desc
+        order by price desc
       </when>
       <when test="priceSort == 1">
-        price asc
+        order by price asc
       </when>
 
       <otherwise>
