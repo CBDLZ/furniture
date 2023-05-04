@@ -20,20 +20,34 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
 
         // 白名单
         List<String> patterns = new ArrayList<String>();
-        patterns.add("/bootstrap3/**");
-        patterns.add("/css/**");
-        patterns.add("/images/**");
-        patterns.add("/js/**");
-        patterns.add("/web/register.html");
-        patterns.add("/web/login.html");
-        patterns.add("/web/index.html");
-        patterns.add("/web/product.html");
+        patterns.add("/pic/**");
+//        patterns.add("/UI/api/**");
+        patterns.add("/UI/css/**");
+        patterns.add("/UI/images/**");
+        patterns.add("/UI/js/**");
+        patterns.add("/UI/lib/**");
+        patterns.add("/UI/store_page/asset/**");
+        patterns.add("/UI/store_page/bootstrap/**");
+        patterns.add("/UI/store_page/bootstrap3/**");
+        patterns.add("/UI/store_page/css/**");
+        patterns.add("/UI/store_page/images/**");
+        patterns.add("/UI/store_page/pic2/**");
+        patterns.add("/UI/store_page/login.html");
+        patterns.add("/UI/store_page/new_login.html");
+        patterns.add("/UI/store_page/register.html");
+        patterns.add("/UI/store_page/hot.html");
+        patterns.add("/UI/store_page/index.html");
+//        patterns.add("/UI/store_page/product.html");
+//        patterns.add("/UI/store_page/product_list.html");
         patterns.add("/users/reg");
         patterns.add("/users/login");
-        patterns.add("/districts/**");
-        patterns.add("/products/**");
-        patterns.add("/new_web/**");
+//        patterns.add("/products/product_list");
+//        patterns.add("/products/filter_product_list");
+//        patterns.add("/products/{id}/get_product");
+//        patterns.add("{productId}/{kind}/find_pics");
+
+
         // 通过注册工具添加拦截器
-//        registry.addInterceptor(interceptor).addPathPatterns("/**").excludePathPatterns(patterns);
+        registry.addInterceptor(interceptor).addPathPatterns("/**").excludePathPatterns(patterns);
     }
 }
