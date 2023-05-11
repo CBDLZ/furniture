@@ -37,7 +37,22 @@ public class UserController extends BaseController{
         return new JsonResult<Void>(OK, CODE);
     }
 
+    @RequestMapping("findAll")
+    public JsonResult<List<User>> findAll(HttpSession session) {
+        // 调用业务对象执行注册
+        List<User> data = userService.findAll(getUidFromSession(session));
+        // 返回
+        return new JsonResult<List<User>>(OK, CODE, data);
+    }
 
+
+    @RequestMapping("delete/{delUid}")
+    public JsonResult<Void> deleteByPrimaryKey(@PathVariable("delUid") Integer delUid,HttpSession session) {
+        // 调用业务对象执行注册
+        Integer data = userService.deleteByPrimaryKey(delUid, getUidFromSession(session));
+        // 返回
+        return new JsonResult<Void>(OK, CODE);
+    }
     @RequestMapping("login")
     public JsonResult<User> login(String username, String password, HttpSession session) {
         // 调用业务对象的方法执行登录，并获取返回值
@@ -179,4 +194,6 @@ public class UserController extends BaseController{
         // 返回成功头像路径
         return new JsonResult<String>(OK, CODE, avatar);
     }
+
+
 }

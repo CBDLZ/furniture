@@ -57,6 +57,7 @@ public class OrderServiceImpl implements IOrderService {
         order.setTotalPrice(totalPrice);
         // 补全数据：status
         order.setStatus(0);
+        order.setIsReviewed(0);
         // 补全数据：下单时间
         order.setOrderTime(now);
         // 补全数据：日志

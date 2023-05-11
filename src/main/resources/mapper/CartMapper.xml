@@ -100,4 +100,11 @@
         ORDER BY
         t_cart.created_time DESC
     </select>
+
+    <delete id="deleteByCid">
+        DELETE FROM
+            t_cart
+        WHERE
+            cid=#{cid}
+    </delete>
 </mapper>

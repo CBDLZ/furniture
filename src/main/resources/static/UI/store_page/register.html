@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <!--导入核心文件-->
-    <script src="../../store_web/bootstrap3/js/holder.js"></script>
-
-    <script src="../../store_web/bootstrap3/jquery-1.9.1.min.js"></script>
-
+    <script src="bootstrap3/js/holder.js"></script>
+    <script src="bootstrap3/jquery-1.9.1.min.js"></script>
+    <script src="bootstrap3/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../lib/layui-v2.6.3/css/layui.css" media="all">
+    <script src="bootstrap3/js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
     <title>注册</title>
     <style>
         * {
@@ -17,7 +18,7 @@
         }
 
         body {
-            background-image: url("../../new_web/images/bg.jpg");
+            background-image: url("images/bg.jpg");
             background-size: cover;
             display: flex;
             justify-content: center;
@@ -151,7 +152,13 @@
             <div class="inputbox">
                 <input type="password" placeholder="确认密码">
             </div>
-
+            <div class="inputbox">
+                <select name="userKind" lay-verify="required">
+                    <option value=""></option>
+                    <option value="1">设计师</option>
+                    <option value="2">普通用户</option>
+                </select>
+            </div>
             <div class="loginbtn">
                 <input type="button" id="btn-reg" value="注册" >
             </div>

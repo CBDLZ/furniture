@@ -34,5 +34,34 @@ public class DesignController extends BaseController{
         return new JsonResult<Void>(OK, CODE);
     }
 
+    @RequestMapping("/not_taken")
+    public JsonResult<List<DesignOrder>> findNotTaken() {
+        List<DesignOrder> data = designService.selectNotTaken();
+        // 响应成功
+        return new JsonResult<List<DesignOrder>>(OK, CODE,data);
+    }
 
+    @RequestMapping("/take_order/{did}")
+    public JsonResult<Void> takeOrder(@PathVariable("did") Integer did, HttpSession session) {
+        Integer designerId = getUidFromSession(session);
+        Integer data = designService.takeOrder(did, designerId);
+        // 响应成功
+        return new JsonResult<Void>(OK, CODE);
+    }
+
+    @RequestMapping("/taken")
+    public JsonResult<List<DesignOrder>> findTaken(HttpSession session) {
+        Integer designerId = getUidFromSession(session);
+        List<DesignOrder> data = designService.selectTaken(designerId);
+        // 响应成功
+        return new JsonResult<List<DesignOrder>>(OK, CODE,data);
+    }
+
+    @RequestMapping("/request")
+    public JsonResult<List<DesignOrder>> findUserRequest(HttpSession session) {
+        Integer uid = getUidFromSession(session);
+        List<DesignOrder> data = designService.selectByUid(uid);
+        // 响应成功
+        return new JsonResult<List<DesignOrder>>(OK, CODE,data);
+    }
 }

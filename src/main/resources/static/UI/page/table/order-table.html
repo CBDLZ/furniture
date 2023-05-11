@@ -27,7 +27,16 @@
 
         <script type="text/html" id="currentTableBar">
             <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="watch">查看</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="finish">完成</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="review">评价</a>
+<!--            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="finish">完成</a>-->
+            <!-- 这里同样支持 laytpl 语法，如： -->
+            {{#  if(d.isReviewed == null || d.isReviewed == 0){ }}
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="finish">未完成</a>
+
+            {{# } }}
+            {{#  if(d.isReviewed == 1){ }}
+            <a class="layui-btn layui-btn-xs" lay-event="check">已完成</a>
+            {{# } }}
         </script>
 
     </div>
@@ -60,7 +69,7 @@
                     {field: 'recvProvince', width: 80, title: '省'},
                     {field: 'recvCity', width: 80, title: '市'},
                     {field: 'recvArea', width: 80, title: '区域'},
-                    {field: 'totalPrice', width: 80, title: '1558'},
+                    {field: 'totalPrice', width: 80, title: '总价'},
                     {field: 'status', width: 80, templet: function(d){if (d.status == 0) return '未支付'; else if (d.status == 1) return '已支付';else if (d.status == 2) return '已完成';}, title: '状态'},
                     {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}]],
             limits: [10, 15, 20, 25, 50, 100],
@@ -121,6 +130,21 @@
                     });
                     layer.close(index);
                 });
+            }else if (obj.event === 'review') {
+                console.log(obj.data.oid);
+                var index = layer.open({
+                    title: '评价',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin:true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: 'order-review.html?oid='+obj.data.oid,
+                });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+                return false;
             }
         });
 

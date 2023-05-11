@@ -2,8 +2,11 @@ package com.cy.store.service;
 
 import com.cy.store.entity.User;
 
+import java.util.List;
+
 public interface IUserService {
     void reg(User user);
+
     /**
      * 用户登录
      * @param username 用户名
@@ -43,4 +46,10 @@ public interface IUserService {
      * @param avatar 用户的新头像的路径
      */
     void changeAvatar(Integer uid, String username, String avatar);
+
+    List<User> findAll(Integer uid);
+
+    Integer deleteByPrimaryKey(Integer delUid,Integer uid);
+
+
 }

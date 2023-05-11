@@ -124,4 +124,10 @@ public class CartServiceImpl implements ICartService {
         }
         return list;
     }
+
+    @Override
+    public Integer deleteByCid(Integer cid) {
+        Integer rows = cartMapper.deleteByCid(cid);
+        return rows;
+    }
 }

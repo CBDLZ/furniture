@@ -60,4 +60,14 @@ public class CartController extends BaseController {
         // 返回成功与数据
         return new JsonResult<>(OK, CODE, data);
     }
+
+    @GetMapping("delete/{cid}")
+    public JsonResult<List<CartVO>> deleteByCid(@PathVariable("cid") Integer cid, HttpSession session) {
+        // 从Session中获取uid
+        Integer uid = getUidFromSession(session);
+        // 调用业务对象执行查询数据
+        Integer rows = cartService.deleteByCid(cid);
+        // 返回成功与数据
+        return new JsonResult<>(OK, CODE);
+    }
 }

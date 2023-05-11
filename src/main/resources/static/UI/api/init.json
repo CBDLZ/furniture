@@ -28,6 +28,12 @@
           "target": "_self"
         },
         {
+          "title": "用户管理",
+          "href": "page/table/user-table.html",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
+        {
           "title": "商品管理",
           "href": "page/table/product-table.html",
           "icon": "fa fa-window-maximize",
@@ -44,7 +50,20 @@
           "href": "page/table.html",
           "icon": "fa fa-file-text",
           "target": "_self"
+        },
+        {
+          "title": "全屋设计接单",
+          "href": "page/table/take-design-table.html",
+          "icon": "fa fa-file-text",
+          "target": "_self"
+        },
+        {
+          "title": "已接受的设计订单",
+          "href": "page/table/accept-design-table.html",
+          "icon": "fa fa-file-text",
+          "target": "_self"
         }
+
 
 
       ]

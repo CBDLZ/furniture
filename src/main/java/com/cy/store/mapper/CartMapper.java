@@ -60,4 +60,6 @@ public interface CartMapper {
      * @return 匹配的购物车数据详情的列表
      */
     List<CartVO> findVOByCids(Integer[] cids);
+
+    Integer deleteByCid(Integer cid);
 }

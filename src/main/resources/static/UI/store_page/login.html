@@ -188,11 +188,11 @@
             success: function(json) {
                 if (json.state == 200) {
                     alert("登录成功！");
-                    console.log(json.data);
+                    console.log(json.data.userKind);
 
-
+                    // $.cookie("userKind",json.data.userKind,{expires:7})
                     // console.log("cookie中的avatar=" + $.cookie("avatar"));
-                    location.href = "index.html";
+                    location.href = "index.html?userKind="+json.data.userKind;
                 } else {
                     alert("登录失败！" + json.message);
                 }

@@ -16,6 +16,7 @@
         <result column="recv_address" property="recvAddress"/>
         <result column="total_price" property="totalPrice"/>
         <result column="status" property="status"/>
+        <result column="is_reviewed" property="isReviewed"/>
         <result column="order_time" property="orderTime"/>
         <result column="pay_time" property="payTime"/>
     </resultMap>
@@ -42,11 +43,11 @@
     <insert id="insertOrder" useGeneratedKeys="true" keyProperty="oid">
         INSERT INTO t_order (
             uid, recv_name, recv_phone, recv_province, recv_city, recv_area, recv_address,
-            total_price,status, order_time, pay_time, created_user, created_time, modified_user,
+            total_price,status, is_reviewed, order_time, pay_time, created_user, created_time, modified_user,
             modified_time
         ) VALUES (
                      #{uid}, #{recvName}, #{recvPhone}, #{recvProvince}, #{recvCity}, #{recvArea},
-                     #{recvAddress}, #{totalPrice}, #{status}, #{orderTime}, #{payTime}, #{createdUser},
+                     #{recvAddress}, #{totalPrice}, #{status}, #{isReviewed}, #{orderTime}, #{payTime}, #{createdUser},
                      #{createdTime}, #{modifiedUser}, #{modifiedTime}
                  )
     </insert>

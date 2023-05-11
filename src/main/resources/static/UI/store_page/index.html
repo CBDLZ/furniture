@@ -22,9 +22,9 @@
             <li class="layui-nav-item"><a style="text-decoration: none;" href="">首页</a></li>
             <li class="layui-nav-item"><a style="text-decoration: none;" href="product_list.html">所有家居</a></li>
             <li class="layui-nav-item"><a style="text-decoration: none;" href="hot.html">灵感分享</a></li>
-            <li class="layui-nav-item"><a style="text-decoration: none;" href="">家居定制</a></li>
+            <li class="layui-nav-item"><a style="text-decoration: none;" href="design.html">家居定制</a></li>
             <li class="layui-nav-item"><a style="text-decoration: none;" href="cart.html">购物车</a></li>
-            <li class="layui-nav-item"><a style="text-decoration: none;" href="../index.html">个人中心</a></li>
+            <li class="layui-nav-item"><a id="link" style="text-decoration: none;" href="../index.html"  target="_blank" rel="noopener noreferrer">个人中心</a></li>
             <li class="layui-nav-item share"><a style="text-decoration: none;" href=""> <i class="layui-icon layui-icon-login-wechat"style="font-size: 30px;"></i></a></li>
             <li class="layui-nav-item share"><a style="text-decoration: none;" href=""> <i class="layui-icon layui-icon-login-qq"style="font-size: 30px;"></i></a></li>
             <li class="layui-nav-item share"><a style="text-decoration: none;" href=""> <i class="layui-icon layui-icon-login-weibo"style="font-size: 30px;"></i></a></li>
@@ -360,8 +360,16 @@
 
 </body>
 
-
+<script type="text/javascript" src="../js/jquery-getUrlParam.js"></script>
 <script>
+
+
+    $(document).ready(function () {
+        // userKind = $.cookie("userKind")
+        var userKind = $.getUrlParam('userKind');
+        $("#link").attr('href','../index.html?userKind='+userKind);
+        console.log(userKind);
+    });
     layui.use(['layer', 'form'], function(){
         var layer = layui.layer
             ,form = layui.form;

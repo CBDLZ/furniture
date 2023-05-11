@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -85,7 +86,8 @@ public class UserServiceImpl implements IUserService {
         // 将查询结果中的uid、username、avatar封装到新的user对象中
         user.setUid(result.getUid());
         user.setUsername(result.getUsername());
-        user.setAvatar(result.getAvatar());
+        System.out.println(result.getUserKind());
+        user.setUserKind(result.getUserKind());
         // 返回新的user对象
         return user;
     }
@@ -239,4 +241,27 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
+    @Override
+    public List<User> findAll(Integer uid) {
+        User user = userMapper.findByUid(uid);
+        if (user.getUserKind() == 0){
+            List<User> results = userMapper.findAll();
+            return results;
+        }else {
+            throw new AccessDeniedException("无权限访问");
+        }
+
+    }
+
+    @Override
+    public Integer deleteByPrimaryKey(Integer delUid, Integer uid) {
+        User user = userMapper.findByUid(uid);
+        if (user.getUserKind() == 0){
+            Integer results = userMapper.deleteByPrimaryKey(delUid);
+            return results;
+        }else {
+            throw new AccessDeniedException("无权限访问");
+        }
+
+    }
 }

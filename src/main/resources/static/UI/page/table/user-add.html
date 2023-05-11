@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../lib/layui-v2.8/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <script src="../../js/jquery-1.9.1.min.js"></script>
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form" id="add_area">
+
+
+    <form id="form-add">
+        <div class="layui-form-item">
+            <label class="layui-form-label required">用户名</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" lay-verify="required" lay-reqtext="不能为空"
+                       placeholder="请输入用户名姓名" value="" class="layui-input">
+
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">密码</label>
+            <div class="layui-input-block">
+                <input type="password" name="password" lay-verify="required" lay-reqtext="密码不能为空"
+                       placeholder="请输入密码" value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户身份</label>
+            <div class="layui-input-block">
+                <select name="userKind" lay-verify="required">
+                    <option value=""></option>
+                    <option value="0">管理员</option>
+                    <option value="1">设计师</option>
+                    <option value="2">普通用户</option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button id="btn-add-address" class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn_address">
+                    确认保存
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+<script src="../../lib/layui-v2.8/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/jquery-getUrlParam.js"></script>
+<script>
+
+    layui.use(['upload', 'element', 'form'], function () {
+        var form = layui.form,
+            layer = layui.layer;
+
+        var $ = layui.jquery
+            , upload = layui.upload
+            , element = layui.element;
+
+
+
+        $(document).ready(function () {
+
+
+        });
+
+
+
+        form.on('submit(saveBtn_address)', function (data) {
+            $.ajax({
+                url: '/users/reg',
+                type: "POST",
+                data: $("#form-add").serialize(),
+                dataType: "JSON",
+                success: function (json) {
+                    if (json.state == 200) {
+                        // alert("新增收货地址成功！");
+                        var index = layer.alert("添加成功", {
+                            title: '提示'
+                        }, function () {
+                            // 关闭弹出层
+                            layer.close(index);
+                            var iframeIndex = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(iframeIndex);
+
+                        });
+
+                    } else {
+                        alert("新增失败！" + json.message);
+                    }
+                },
+                error: function (xhr) {
+                    alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
+                    location.href = "login.html";
+                }
+            });
+
+
+            return false;
+        });
+
+
+
+
+    });
+
+
+
+</script>
+</body>
+</html>

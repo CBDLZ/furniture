@@ -4,6 +4,7 @@ import com.cy.store.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
+import java.util.List;
 
 public interface UserMapper {
     /**
@@ -61,4 +62,8 @@ public interface UserMapper {
             @Param("avatar") String avatar,
             @Param("modifiedUser") String modifiedUser,
             @Param("modifiedTime") Date modifiedTime);
+
+    List<User> findAll();
+
+    Integer deleteByPrimaryKey(Integer uid);
 }

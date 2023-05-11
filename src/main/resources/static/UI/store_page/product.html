@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>首页</title>
     <link rel="stylesheet" href="../lib/layui-v2.6.3/css/layui.css" media="all">
-    <link rel="stylesheet" href="css/style2.css">
+
     <script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
 
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
@@ -49,9 +49,9 @@
         .form-space{
             margin-top: 20px;
         }
-        .product-form {
-            margin-top: 20px;
-        }
+        /*.product-form {*/
+        /*    margin-top: 20px;*/
+        /*}*/
 
         .price-bar{
 
@@ -65,6 +65,9 @@
         .product-details img{
             margin-top: 20px;
             width: 100%;
+        }
+        .layui-rate{
+            padding-bottom: 0px;
         }
 
     </style>
@@ -103,7 +106,12 @@
             <p id="product-sell-point" class="col-md-12"><small>仅上海，广州，沈阳仓有货！预购从速！</small></p>
             <div class="col-md-12 price-bar">
                 <small>学员售价：</small> ¥<span id="product-price">4899.00</span>
+
                 <div><small>*退货补运费 *7天无理由退货 *24小时快速退款 </small></div>
+            </div>
+            <div id="score" class="col-md-12" style="padding-bottom: 0px "></div>
+            <div class="col-md-12">
+                <button class="col-md-4" id="view">查看评价</button>
             </div>
             <form class="form-inline product-form col-md-12" role="form">
                 <div class="col-md-12 form-space">
@@ -142,16 +150,18 @@
 </div>
 
 <script>
-    layui.use(['carousel'], function(){
+    layui.use(['carousel','rate'], function(){
         var carousel = layui.carousel;
-
+        var rate = layui.rate;
 
         let pid = $.getUrlParam("id");
 
             console.log("pid=" + pid);
 
         $(document).ready(function() {
-
+            $("#view").click(function(){
+                location.href="review.html?pid="+pid;
+            });
             //获取轮播图
             $.ajax({
                 url: "/picture/"+ pid +"/1/find_pics",
@@ -226,6 +236,32 @@
                     }
                 }
             });
+
+
+            //获取评分
+            $.ajax({
+                url: "/review/avg/"+pid,
+                type: "GET",
+                dataType: "JSON",
+                success: function(json) {
+                    if (json.state == 200) {
+                        console.log("avg=" + json.data);
+
+                        var ins1 = rate.render({
+                            elem: '#score',  //绑定元素
+                            value: json.data,
+                            half: true,
+                            readonly: true
+                        });
+
+                    } else if (json.state == 4006) { // 数据不存在的异常
+                        location.href = "index.html";
+                    } else {
+                        alert("获取信息失败！" + json.message);
+                    }
+                }
+            })
+
         });
 
         // 购物车添加按钮点击

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../lib/layui-v2.6.3/css/layui.css" media="all">
+    <script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-getUrlParam.js"></script>
+</head>
+<style type="text/css">
+    .comment_list {
+        padding-top:40px;
+        width:700px;
+        margin:0 auto;
+    }
+    .comment_details {
+        float:left;
+    }
+    .comment_content {
+        margin-top:10px;
+        font-size:16px;
+    }
+    .comment_add_or_last {
+
+        margin:0 auto;
+        clear: both;
+        width:600px;
+        height:40px;
+        background: #F0F0F0;
+        text-align: center;
+        line-height: 40px;   //行高（与div保持同高，垂直居中写法）
+    }
+    .imgdiv{
+        float:left;
+
+    }
+    .imgcss {
+        width:50px;
+        height:50px;
+        border-radius: 50%;
+    }
+    .comment_name {
+        margin-left:10px;
+        color:#3D9EEA;
+        font-size:15px;
+        font-weight: bolder;
+    }
+    .layui-icon {
+        font-size: 10px;
+        color: grey;
+    }
+    .del {
+        margin-left: 55px;
+    }
+
+    .score{
+        padding-top: 14px;
+    }
+</style>
+
+<body>
+<div class="layui-col-md3" style="margin-top: 40px;margin-left: 20px">
+    <div class="layui-col-md12" style="font-size: large">买家评论</div>
+    <div class="layui-row">
+        <div id="score" class="layui-col-md5" style="padding-bottom: 0px "></div><div class="layui-col-md7 score" >均分</div>
+    </div>
+    <div class="layui-row">
+        <div id="score5" class="layui-col-md5" style="padding-bottom: 0px "></div><div class="layui-col-md7 score score5">12</div>
+    </div>
+    <div class="layui-row">
+        <div id="score4" class="layui-col-md5" style="padding-bottom: 0px "></div><div class="layui-col-md7 score score4">12</div>
+    </div>
+    <div class="layui-row">
+        <div id="score3" class="layui-col-md5" style="padding-bottom: 0px "></div><div class="layui-col-md7 score score3">12</div>
+    </div>
+    <div class="layui-row">
+        <div id="score2" class="layui-col-md5" style="padding-bottom: 0px "></div><div class="layui-col-md7 score score2">12</div>
+    </div>
+    <div class="layui-row">
+
+        <div id="score1" class="layui-col-md5" style="padding-bottom: 0px "></div><div class="layui-col-md7 score score1">12</div>
+    </div>
+
+
+
+
+
+</div>
+<div class="layui-col-md6">
+    <div class="comment_list">
+        <h2 >全部评论</h2>
+        <hr>
+<!--        <div class="comment">-->
+<!--            <div class="conmment_details">-->
+<!--                <span class="comment_name">#{username}</span><div id="user-score-#{rid}"></div>-->
+<!--                <div class="comment_content" >#{review}</div>-->
+<!--            </div>-->
+<!--            <hr>-->
+<!--        </div>-->
+
+    </div>
+    <div class="comment_add_or_last" >
+        没有更多评论了
+    </div>
+</div>
+
+
+
+</body>
+
+
+<script type="text/javascript">
+
+    let pid = $.getUrlParam("pid");
+    layui.use(['form','layer','jquery','element','laypage','form','rate'],function(){
+        var form = layui.form;
+        window.layer = layui.layer;
+        layedit = layui.layedit;
+        window.jQuery = window.$ = layui.jquery;
+        var rate = layui.rate;
+        var element = layui.element,
+
+            laypage = layui.laypage;
+
+        var ins1 = rate.render({
+            elem: '#score',  //绑定元素
+            value: 5,
+            half: true,
+            readonly: true
+        });
+        var ins1 = rate.render({
+            elem: '#score5',  //绑定元素
+            value: 5,
+            half: true,
+            readonly: true
+        });
+        var ins1 = rate.render({
+            elem: '#score4',  //绑定元素
+            value: 4,
+            half: true,
+            readonly: true
+        });
+        var ins1 = rate.render({
+            elem: '#score3',  //绑定元素
+            value: 3,
+            half: true,
+            readonly: true
+        });
+        var ins1 = rate.render({
+            elem: '#score2',  //绑定元素
+            value: 2,
+            half: true,
+            readonly: true
+        });
+
+        var ins1 = rate.render({
+            elem: '#score1',  //绑定元素
+            value: 1,
+            half: true,
+            readonly: true
+        });
+
+
+
+        $(document).ready(function() {
+            $.ajax({
+                url: "/review/get_percent/"+pid+"/5",
+                type: "GET",
+                data: "parent=86",
+                dataType: "JSON",
+                success: function (json) {
+                    if (json.state == 200) {
+                        data = json.data;
+                        console.log("percent=" + data);
+                        $(".score5").html(data+"%");
+
+                    }
+                }
+            });
+            $.ajax({
+                url: "/review/get_percent/"+pid+"/4",
+                type: "GET",
+                data: "parent=86",
+                dataType: "JSON",
+                success: function (json) {
+                    if (json.state == 200) {
+                        data = json.data;
+                        console.log("percent=" + data);
+                        $(".score4").html(data+"%");
+
+                    }
+                }
+            });
+            $.ajax({
+                url: "/review/get_percent/"+pid+"/3",
+                type: "GET",
+                data: "parent=86",
+                dataType: "JSON",
+                success: function (json) {
+                    if (json.state == 200) {
+                        data = json.data;
+                        console.log("percent=" + data);
+                        $(".score3").html(data+"%");
+
+                    }
+                }
+            });
+            $.ajax({
+                url: "/review/get_percent/"+pid+"/2",
+                type: "GET",
+                data: "parent=86",
+                dataType: "JSON",
+                success: function (json) {
+                    if (json.state == 200) {
+                        data = json.data;
+                        console.log("percent=" + data);
+                        $(".score2").html(data+"%");
+
+                    }
+                }
+            });
+            $.ajax({
+                url: "/review/get_percent/"+pid+"/1",
+                type: "GET",
+                data: "parent=86",
+                dataType: "JSON",
+                success: function (json) {
+                    if (json.state == 200) {
+                        data = json.data;
+                        console.log("percent=" + data);
+                        $(".score1").html(data+"%");
+
+                    }
+                }
+            });
+            $.ajax({
+                url: "/review/get_review/"+pid,
+                type: "GET",
+                dataType: "JSON",
+                success: function (json) {
+                    if (json.state == 200) {
+                        let list = json.data;
+                        console.log("count=" + list.length);
+                        for (let i = 0; i < list.length; i++) {
+                            let html = '<div class="comment">\n' +
+                                '            <div class="conmment_details">\n' +
+                                '                <span class="comment_name">#{username}</span><div id="user-score-#{rid}"></div>\n' +
+                                '                <div class="comment_content" >#{review}</div>\n' +
+                                '            </div>\n' +
+                                '            <hr>\n' +
+                                '        </div>';
+
+
+                            html = html.replace(/#{rid}/g, list[i].rid);
+                            html = html.replace(/#{username}/g, list[i].username);
+                            html = html.replace(/#{review}/g, list[i].review);
+
+                            // html = html.replace(/#{image}/g, "../store_page/images/product_pics/"+list[i].id+"/1.avif");
+
+                            $(".comment_list").append(html);
+                            var ins1 = rate.render({
+                                elem: '#user-score-'+list[i].rid,  //绑定元素
+                                value: list[i].score,
+                                half: true,
+                                readonly: true
+                            });
+
+                        }
+
+                    }
+                }
+            });
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,55 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "page/welcome-1.html?t=1"
+  },
+  "logoInfo": {
+    "title": "家居个性化",
+    "image": "images/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "常规管理",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "基本信息",
+          "href": "page/basic-info.html",
+          "icon": "fa fa-home",
+          "target": "_self"
+        },
+        {
+          "title": "地址管理",
+          "href": "page/table/address-table.html",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
+        {
+          "title": "订单管理",
+          "href": "page/table/order-table.html",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
+        {
+          "title": "灵感分享",
+          "href": "page/table.html",
+          "icon": "fa fa-file-text",
+          "target": "_self"
+        },
+        {
+          "title": "设计请求",
+          "href": "page/table/design-request-table.html",
+          "icon": "fa fa-file-text",
+          "target": "_self"
+        }
+
+
+
+
+      ]
+    }
+  ]
+}

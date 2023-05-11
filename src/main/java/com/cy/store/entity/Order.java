@@ -6,6 +6,7 @@ import java.util.Date;
 public class Order extends BaseEntity implements Serializable {
     private Integer oid;
     private Integer uid;
+
     private String recvName;
     private String recvPhone;
     private String recvProvince;
@@ -14,6 +15,7 @@ public class Order extends BaseEntity implements Serializable {
     private String recvAddress;
     private Long totalPrice;
     private Integer status;
+    private Integer isReviewed;
     private Date orderTime;
     private Date payTime;
 
@@ -30,6 +32,7 @@ public class Order extends BaseEntity implements Serializable {
                 ", recvAddress='" + recvAddress + '\'' +
                 ", totalPrice=" + totalPrice +
                 ", status=" + status +
+                ", isReviewed=" + isReviewed +
                 ", orderTime=" + orderTime +
                 ", payTime=" + payTime +
                 '}';
@@ -60,6 +63,8 @@ public class Order extends BaseEntity implements Serializable {
         if (getTotalPrice() != null ? !getTotalPrice().equals(order.getTotalPrice()) : order.getTotalPrice() != null)
             return false;
         if (getStatus() != null ? !getStatus().equals(order.getStatus()) : order.getStatus() != null) return false;
+        if (getIsReviewed() != null ? !getIsReviewed().equals(order.getIsReviewed()) : order.getIsReviewed() != null)
+            return false;
         if (getOrderTime() != null ? !getOrderTime().equals(order.getOrderTime()) : order.getOrderTime() != null)
             return false;
         return getPayTime() != null ? getPayTime().equals(order.getPayTime()) : order.getPayTime() == null;
@@ -78,9 +83,18 @@ public class Order extends BaseEntity implements Serializable {
         result = 31 * result + (getRecvAddress() != null ? getRecvAddress().hashCode() : 0);
         result = 31 * result + (getTotalPrice() != null ? getTotalPrice().hashCode() : 0);
         result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
+        result = 31 * result + (getIsReviewed() != null ? getIsReviewed().hashCode() : 0);
         result = 31 * result + (getOrderTime() != null ? getOrderTime().hashCode() : 0);
         result = 31 * result + (getPayTime() != null ? getPayTime().hashCode() : 0);
         return result;
+    }
+
+    public Integer getIsReviewed() {
+        return isReviewed;
+    }
+
+    public void setIsReviewed(Integer isReviewed) {
+        this.isReviewed = isReviewed;
     }
 
     public Integer getOid() {
