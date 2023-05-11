@@ -20,11 +20,11 @@ public class BaseController {
         if (e instanceof UsernameDuplicateException) {
             result.setState(4000);
             result.setCode(111);
-        }else if (e instanceof InsertException) {
+        }else if (e instanceof NotFoundException) {
             result.setState(5001);
             result.setCode(111);
             result.setMessage("用户数据不存在");
-        }else if (e instanceof InsertException) {
+        }else if (e instanceof PasswordNotMatchException) {
             result.setState(5002);
             result.setCode(111);
             result.setMessage("密码错误");
@@ -32,7 +32,7 @@ public class BaseController {
             result.setState(5000);
             result.setCode(111);
             result.setMessage("插入数据异常");
-        }else if (e instanceof InsertException) {
+        }else if (e instanceof UpdateException) {
             result.setState(5001);
             result.setCode(111);
             result.setMessage("更新数据异常");
